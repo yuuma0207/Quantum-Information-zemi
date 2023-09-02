@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  2 SEP 2023 13:31
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  2 SEP 2023 15:09
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1284,17 +1284,17 @@ LaTeX Font Info:    Font shape `JY2/hmc/bx/n' in size <10> not available
 (Font)              Font shape `JY2/hgt/m/n' tried instead on input line 102.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
 (Font)              scaled to size 9.24683pt on input line 102.
-[4] [5] (out/bloch_sphere/bloch_sphere.aux)
+[4] [5] [6] [7] (out/bloch_sphere/bloch_sphere.aux)
 Package rerunfilecheck Info: File `bloch_sphere.out' has not changed.
 (rerunfilecheck)             Checksum: A25A27F49263B03CDEEF2B0EB44CEF6C;1008.
  ) 
 Here is how much of TeX's memory you used:
  38268 strings out of 475422
  776992 string characters out of 5788032
- 1132943 words of memory out of 5000000
+ 1145943 words of memory out of 5000000
  59422 multiletter control sequences out of 15000+600000
  526195 words of font info for 151 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 99i,11n,94p,504b,1246s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,14n,94p,504b,1246s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/bloch_sphere/bloch_sphere.dvi (5 pages, 24728 bytes).
+Output written on out/bloch_sphere/bloch_sphere.dvi (7 pages, 37212 bytes).

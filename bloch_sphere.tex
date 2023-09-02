@@ -159,12 +159,175 @@ $\text{状態ベクトルの集合}\longleftrightarrow \mathbb{P}^1(\mathbb{C})\
 \end{equation}
 となり、Bloch球上では$(\theta,\,\varphi)\rightarrow(\theta,\,\varphi+\alpha)$の変換が行われている。
 これは、$z$軸方向に$\alpha$回転していることに他ならない。
+他の例として、$\bm{n}=(1/\sqrt{2},0,1/\sqrt{2})$に対する$R_{n}(\pi)$はHadamardゲートに対応している。
 
-他の例として、$\bm{n}_{H}=(1/\sqrt{2},0,1/\sqrt{2})$に対して、$R_{n_H}(\pi)$はHadamardゲートに対応している。
-
+\newpage
 \section{Hilbert-Schmidt表現}
+状態ベクトルからBlochへの対応関係は少しわかりにくい。
+ここでは、密度行列をHilbert-Schmidt表現で表すと、自然とBloch球との対応が見て取れることを確認する。
 
+状態ベクトル$\ket{\psi}$に対応して、密度行列$\rho=\ketbra{\psi}$を定義する。
+\begin{equation}
+  \ket{0}=
+  \begin{pmatrix}
+   1 \\ 0 
+  \end{pmatrix},\quad
+  \ket{1} = 
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+\end{equation}
+とすると、$\rho$は$\mathbb{C}$上の$2\times 2$行列として表現できる。また、
+$M_2(\mathbb{C}) = \text{span}\{\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=Z\}$
+であることが知られている。$A\in M_2(\mathbb{C})$の$\sigma_\mu\,(\mu=0,1,2,3)$での展開係数$s_{\mu}$は、
+\begin{equation}
+  s_\mu = \frac{1}{2}\Tr(A\sigma_{\mu})
+\end{equation}
+と求めることができる。この$s_\mu$を用いて、$A\in M_2(\mathbb{C})$を
+\begin{equation}
+  A=
+  \begin{pmatrix}
+    s_0 \\ s_1 \\ s_2 \\ s_3
+  \end{pmatrix}_{\text{HS}}
+\end{equation}
+と表すことを、Hilbert-Schmidt表現と呼ぶ。すなわち、それぞれの基底の表現は
+\begin{equation}
+  I=
+  \begin{pmatrix}
+    1 \\ 0 \\ 0 \\ 0
+  \end{pmatrix}_{\text{HS}},\,
+  X=
+  \begin{pmatrix}
+    0 \\ 1 \\ 0 \\ 0
+  \end{pmatrix}_{\text{HS}},\,
+  Y=
+  \begin{pmatrix}
+    0 \\ 0 \\ 1 \\ 0
+  \end{pmatrix}_{\text{HS}},\,
+  Z=
+  \begin{pmatrix}
+    0 \\ 0 \\ 0 \\ 1
+  \end{pmatrix}_{\text{HS}}
+\end{equation}
+となる。
+\subsubsection*{準備}
+密度行列の表現を求めるために、$\ketbra{i}{j}\,(i,j=0,1)$を$\sigma_\mu$で展開しておく：
+\begin{align}
+  \ketbra{0} &= 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    1 & 0
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0 \\ 0 & 0
+  \end{pmatrix}
+  =\frac{I+Z}{2}\;, \\
+  \ketbra{1} &= 
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 & 0 \\ 0 & 1
+  \end{pmatrix}
+  =\frac{I-Z}{2}\;, \\
+  \ketbra{0}{1} &= 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 & 1 \\ 0 & 0
+  \end{pmatrix}
+  =\frac{X+iY}{2}\;。
+\end{align}
+1qubitの量子状態
+\begin{equation}
+  \ket{\psi}=\cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}
+\end{equation}
+は、Bloch球上の極座標表示$(\theta,\,\varphi)$に対応していた。密度行列を求めてみると、
+\begin{align}
+  \rho = \ketbra{\psi} &= \cos^2\frac{\theta}{2}\ketbra{0} + e^{-i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2}\ketbra{0}{1}
+   + e^{i\varphi}\sin\frac{\theta}{2}\cos\frac{\theta}{2}\ketbra{1}{0} + \sin^2\frac{\theta}{2}\ketbra{1} \notag \\
+   &= \frac{1}{2}
+   \begin{pmatrix}
+    I & X & Y & Z
+   \end{pmatrix}
+   \begin{pmatrix}
+    1 \\ \sin\theta\cos\varphi \\ \sin\theta\sin\varphi \\ \cos\theta
+   \end{pmatrix}
+\end{align}
+と表現できる。密度行列のHilbert-Schmidt表現を用いると、Bloch球上の点の座標が自然と出てくることがわかる。
+
+\newpage
 \subsection{量子ゲート操作の表現行列}
+量子ゲートを作用させた際の密度行列の変換則を調べることで、量子ゲートがBloch球上でどのような回転操作に対応しているかを直感的に理解できる。
+ユニタリ演算子を$U$とする。$\ket{\psi}\mapsto U\ket{\psi}$に対応して、密度演算子は
+\begin{equation}
+  \rho = \ketbra{\psi}\mapsto U\ketbra{\psi}U^{\dagger} =U\rho U^\dagger
+\end{equation}
+と変換される。したがって、$f_U(\rho) = U\rho U^{\dagger}$は、密度行列の変換を表す写像となっている。
+\begin{equation}
+  f_U(\rho) = f_U\qty(\sum_{\mu}s_\mu\sigma_\mu) = \sum_{\mu}s_\mu f_U(\sigma_{\mu})
+\end{equation}
+が成立するため、パウリ行列の変換を調べれば良い。
+\subsubsection*{例1：$X$ゲート操作のHS基底における表現}
+パウリ行列の反交換関係を用いると簡単に求めることができる：
+\begin{equation}
+  f_X(I) = XIX^{\dagger} = I,\,f_X(X) = XXX^{\dagger} = X,\,f_X(Y) = XYX^{\dagger} = -Y,\,f_X(Z) = XZX^{\dagger} = -Z\;。
+\end{equation}
+これより、$f_X(\cdot)$の表現行列は
+\begin{equation}
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\
+    0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1
+  \end{pmatrix}_{\text{HS}}
+\end{equation}
+となる。すなわち、$\rho = \ketbra{\psi} = 2^{-1}(1,\,x,\,y,\,z)_{\text{HS}}^{\top}$は$X$ゲート操作により、
+\begin{equation}
+  f_X(\rho) = 
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\
+    0 & 0 & -1 & 0 \\ 0 & 0 & 0 & -1
+  \end{pmatrix}
+  \begin{pmatrix}
+    1/2 \\ x/2 \\ y/2 \\ z/2
+  \end{pmatrix}
+  =\frac{1}{2}
+  \begin{pmatrix}
+    1 \\ x \\ -y \\ -z
+  \end{pmatrix}
+\end{equation}
+となる。これは、$x$軸方向に$\pi$回転していることを表す。$Y,\,Z$ゲートも同様に、その軸方向に$\pi$回転させる作用を持つ。
+
+\subsection*{例2：$H$ゲート操作のHS基底における表現}
+次に、$H$ゲートについて考える。$H$ゲートをパウリ行列の線形結合で書き表すと先ほどと同じような計算で求まるが、
+ここでは別の方法を紹介する。
+それは、$a\in\{0,1\}$として
+\begin{equation}
+  X\ket{a} = \ket{\bar{a}},\,Y\ket{a} = (-1)^ai\ket{\bar{a}},\,Z\ket{a} = (-1)^a\ket{a}
+\end{equation}
+が成立することや、
+\begin{equation}
+  X\ket{+} = \ket{+},\,X\ket{-}=-\ket{-},\quad Y\ket{i} = \ket{i},\,Y\ket{i-}=-\ket{i-}
+\end{equation}
+が成立することを用いる。（パウリ行列の固有値は$\pm 1$という性質がある。）
+
+$H$ゲートは、$H=(X+Z)/\sqrt{2}$と表されること（や、$(1,0,1)$方向に$\pi$回転すること）を用いると、
+\begin{gather}
+  H\ket{0} = \frac{\ket{0}+\ket{1}}{\sqrt{2}} = \ket{+},\quad H\ket{1} = \frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{-} \\
+  H\ket{i} = \ket{i-},\quad H\ket{i-} = \ket{i}
+\end{gather}
+が成立する。
 
 
 \end{document}
