@@ -94,9 +94,73 @@ $\alpha\in\mathbb{C}$に対して、$\alpha$に対応する$\mathbb{R}^3$上の�
 \end{equation}
 は全単射となる。$F$の像としての$S^2$をRiemann球面と呼ぶ。
 
-\subsection{状態ベクトルと立体射影}
+\newpage
+\begin{tcolorbox}[
+colback = white,
+colframe = green!35!black,
+fonttitle = \bfseries]
+\begin{theorem}[立体射影の表現]
+立体射影$F$は
+\begin{equation}
+  F(x+iy)=\qty(\frac{2x}{1+x^2+y^2},\,\frac{2y}{1+x^2+y^2},\,\frac{1-x^2-y^2}{1+x^2+y^2})
+\end{equation}
+で与えられる。
+\end{theorem}
+\end{tcolorbox}
 
+\subsubsection*{証明}
+$F(x+iy)=(X,\,Y,\,Z)$とおく。PはSとAの内分点または外分点となっているため、
+$SP:AP=t:1-t$とおくと、$\text{P}\neq\text{S}$より$t\neq 0$である。
+$\bm{SP} = (X,\,Y,\,Z+1),\,\bm{PA}=(x-X,\,y-Y,\,-Z)$なので、
+\begin{equation}
+  X=tx,\quad Y=ty,\quad Z=t-1
+\end{equation}
+が成立する。また、Pは$S^2$上の点なので、$t$について
+\begin{gather}
+  X^2+Y^2+Z^2 = t^2(x^2+y^2)+(t-1)^2 = 1 \notag \\
+  \therefore\; t=\frac{2}{1+x^2+y^2}
+\end{gather}
+を得る。
+
+\subsection{状態ベクトルと立体射影}
+$\text{状態ベクトルの集合}\longleftrightarrow \mathbb{P}^1(\mathbb{C})\longleftrightarrow S^2$
+がそれぞれ1対1に対応している。
+\begin{equation}
+  \ket{\psi} = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}
+\end{equation}
+に対応する$\mathbb{P}^1(\mathbb{C})$の元は
+\begin{equation}
+  e^{i\varphi}\tan\frac{\theta}{2} = \cos\varphi\tan\frac{\theta}{2} + i\sin\varphi\tan\frac{\theta}{2} = x + iy
+\end{equation}
+であった。$x^2+y^2+1 = \tan^2(\theta/2) + 1 = \cos^{-2}(\theta/2)$より、
+\begin{equation}
+  F\qty(e^{i\varphi}\tan\frac{\theta}{2}) 
+  = \cos^2\frac{\theta}{2}\qty(2\cos\varphi\tan\frac{\theta}{2},\,2\sin\varphi\tan\frac{\theta}{2},\,1-\tan^2\frac{\theta}{2})
+  = (\sin\theta\cos\varphi,\,\sin\theta\sin\varphi,\,\cos\theta)
+\end{equation}
+を得る。これは、Bloch球上の極座標表示と一致し、Bloch球は立体射影から構成されることがわかった。
+
+\newpage
 \section{Bloch球上の回転操作}
+量子状態に作用させるユニタリ操作において、$\abs{\bm{n}}=1$なる$\bm{n}\in\mathbb{R}^3$を用いて
+\begin{equation}
+  R_n(\theta) = \exp(-i\frac{\theta}{2}\bm{n}\cdot\bm{\sigma}) = \cos\frac{\theta}{2}-i\sin\frac{\theta}{2}(\bm{n\cdot\bm{\sigma}})
+\end{equation}
+と表されるものを考える。これを量子状態に作用させると、Bloch球上では、$\bm{n}$方向の$\theta$回転を引き起こす。
+
+\subsubsection*{例：$\bm{n}=(0,0,1)$のとき（$z$軸回転）}
+\begin{equation}
+  R_z(\alpha)=\exp(-i\frac{\alpha}{2}\sigma_z)
+\end{equation}
+に対して、$\sigma_z\ket{0}=\ket{0},\quad\sigma_z\ket{1}=-\ket{1}$になることに注意すると、
+\begin{equation}
+  R_z(\alpha)\qty(\cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}) 
+  = e^{-i\alpha/2}\qty(\cos\frac{\theta}{2}\ket{0} + e^{i(\varphi+\alpha)}\sin\frac{\theta}{2}\ket{1}) 
+\end{equation}
+となり、Bloch球上では$(\theta,\,\varphi)\rightarrow(\theta,\,\varphi+\alpha)$の変換が行われている。
+これは、$z$軸方向に$\alpha$回転していることに他ならない。
+
+他の例として、$\bm{n}_{H}=(1/\sqrt{2},0,1/\sqrt{2})$に対して、$R_{n_H}(\pi)$はHadamardゲートに対応している。
 
 \section{Hilbert-Schmidt表現}
 
