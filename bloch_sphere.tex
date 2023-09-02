@@ -1,0 +1,87 @@
+%ctrl+alt+m：open Math Preview
+\documentclass[a4paper,11pt,uplatex]{jsarticle}%titlepage
+%:/usr/local/texlive/texmf-local/tex/latex/report/report.sty
+\usepackage{myreport}
+\title{Bloch球と量子状態について}
+\author{松本侑真}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{abstract}
+$1$量子ビットの状態をBloch球上の点として表現する方法について、基礎事項をまとめる。
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{量子状態について}
+\begin{itemize}
+  \item $n$量子ビットの状態は$(\mathbb{C}^2)^{\otimes n}$の元で表される。ゼロベクトル（$\ket{0}\otimes\ket{0}\cdots\otimes{\ket{0}}$ではない）は、
+  どのような状態も表さない。
+  \item $\alpha\in\mathbb{C}\setminus\{\bm{0}\}$とする。このとき、
+  \begin{equation}
+    (\mathbb{C}^{2})^{\otimes n}\setminus\{\bm{0}\}\ni\ket{x}\sim\alpha\ket{x}\in(\mathbb{C}^{2})^{\otimes n}\setminus\{\bm{0}\}
+  \end{equation}
+  の同値類は同一状態を表す。したがって、量子状態$\ket{\psi}$のノルムは1と約束する：
+  \begin{equation}
+    \ket{\psi}\in(\mathbb{C}^2)^{\otimes{n}}\setminus\{\bm{0}\}\wedge \braket{\psi}=1\;。
+  \end{equation}
+  \item $\ket{x},\,\ket{y}$を量子状態とする。このとき、$\alpha,\,\beta\in\mathbb{C}$として、
+  \begin{equation}
+    \alpha\ket{x} + \beta\ket{y}\quad(\abs{\alpha}^2+\abs{\beta}^2\neq 0)
+  \end{equation}
+  は量子状態である。
+\end{itemize}
+
+\subsection{1量子ビット系}
+$1$qubitの量子状態$\mathbb{C}^2\setminus\{\bm{0}\}$の元は、$\alpha,\,\beta\in\mathbb{C}$を用いて
+\begin{equation}
+  \alpha\ket{0}+\beta\ket{1}\quad(\abs{\alpha}^2+\abs{\beta}^2 = 1,\,\braket{i}{j}=\delta_{ij}\;\;(i,j=0,1))
+\end{equation}
+と表す。$a,b\geq 0,\,0\leq t-s<2\pi$を用いて
+\begin{equation}
+  \alpha=ae^{is},\,\beta=be^{it}
+\end{equation}
+とおくと、
+\begin{equation}
+  a=\cos\frac{\theta}{2},\,b=\sin\frac{\theta}{2}\quad(0\leq\theta\leq \pi)
+\end{equation}
+と表すことができる。したがって、
+\begin{equation}
+  \alpha\ket{0}+\beta\ket{1} = e^{is}\qty(\cos\frac{\theta}{2}\ket{0} + e^{i(t-s)}\sin\frac{\theta}{2}\ket{1}) 
+  = \cos\frac{\theta}{2}\ket{0} + e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\quad(0\leq \varphi < 2\pi)
+\end{equation}
+と、$\theta,\,\varphi$を用いて記述することができる。これをBloch球表現と呼ぶ。
+$\theta,\,\varphi$をこのように設定することで、1qubitの量子状態とBloch球上の点を1対1に対応させることができる。
+
+\newpage
+\section{Bloch球表現}
+$0\leq\theta\leq\pi,\,0\leq \varphi<2\pi$として、
+\begin{equation}
+  \cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}\longmapsto (\sin\theta\cos\varphi,\,\sin\theta\sin\varphi,\,\cos\theta)
+\end{equation}
+という写像は、1qubitの状態と$\mathbb{R}^3$の単位球面（Bloch球）との1対1対応を与える。
+例えば、Bloch球の北極（$\theta=0$）は$\ket{0}$の量子状態、南極（$\theta=\pi$）は$\ket{1}$の量子状態に対応している。
+この表現を用いることで、量子ゲート（ユニタリ演算子）の作用をBloch球上の回転操作と同一視することができる。
+
+\subsection{立体射影}
+1qubitの量子状態$\ket{\psi}$からBloch球表現への写像の具体形を導出する。
+\begin{equation}
+  \ket{\psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}
+\end{equation}
+の$\ket{0}$と$\ket{1}$の係数比
+\begin{eqnarray}
+  \alpha=\frac{e^{i\varphi}\sin\frac{\theta}{2}}{\cos\frac{\theta}{2}} = e^{i\varphi}\tan\frac{\theta}{2}
+\end{eqnarray}
+は、$\ket{\psi}$と1対1に対応する。$0\leq\theta\leq\pi$より、$\alpha$は任意の複素数もしくは$\infty$となる（$\alpha\in\mathbb{C}\cup\{\infty\}$）。
+2つの複素数の比
+
+\subsection{状態ベクトルと立体射影}
+
+\section{Bloch球上の回転操作}
+
+\section{Hilbert-Schmidt表現}
+
+\subsection{量子ゲート操作の表現行列}
+
+
+\end{document}
