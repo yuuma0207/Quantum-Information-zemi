@@ -307,7 +307,7 @@ $M_2(\mathbb{C}) = \text{span}\{\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=
     1 \\ x \\ -y \\ -z
   \end{pmatrix}
 \end{equation}
-となる。これは、$x$軸方向に$\pi$回転していることを表す。$Y,\,Z$ゲートも同様に、その軸方向に$\pi$回転させる作用を持つ。
+となり、$x$軸方向に$\pi$回転していることを表す。$Y,\,Z$ゲートも同様に、その軸方向に$\pi$回転させる作用を持つ。
 
 \subsubsection*{例2：$H$ゲート操作のHS基底における表現}
 次に、$H$ゲートについて考える。$H$ゲートをパウリ行列の線形結合で書き表すと先ほどと同じような計算で求まるが、
@@ -316,18 +316,35 @@ $M_2(\mathbb{C}) = \text{span}\{\sigma_0=I,\,\sigma_1=X,\,\sigma_2=Y,\,\sigma_3=
 \begin{equation}
   X\ket{a} = \ket{\bar{a}},\,Y\ket{a} = (-1)^ai\ket{\bar{a}},\,Z\ket{a} = (-1)^a\ket{a}
 \end{equation}
-が成立することや、
+が成立することや、Hadamard基底$\{\ket{+},\,\ket{-}\}$と円基底$\{\ket{i},\,\ket{i-}\}$に対して
 \begin{equation}
   X\ket{+} = \ket{+},\,X\ket{-}=-\ket{-},\quad Y\ket{i} = \ket{i},\,Y\ket{i-}=-\ket{i-}
 \end{equation}
 が成立することを用いる。（パウリ行列の固有値は$\pm 1$という性質がある。）
-
-$H$ゲートは、$H=(X+Z)/\sqrt{2}$と表されること（や、$(1,0,1)$方向に$\pi$回転すること）を用いると、
+$H$ゲートは、$H=(X+Z)/\sqrt{2}$と表されること（や、$(1,0,1)$方向に$\pi$回転すること）を用いると、以下の性質がわかる：
 \begin{gather}
-  H\ket{0} = \frac{\ket{0}+\ket{1}}{\sqrt{2}} = \ket{+},\quad H\ket{1} = \frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{-} \\
-  H\ket{i} = \ket{i-},\quad H\ket{i-} = \ket{i}
+  H\ket{0} = \frac{\ket{0}+\ket{1}}{\sqrt{2}} = \ket{+},\quad H\ket{1} = \frac{\ket{0}-\ket{1}}{\sqrt{2}} = \ket{-}\;, \\
+  H\ket{i} = \ket{i-},\quad H\ket{i-} = \ket{i}\;。
 \end{gather}
-が成立する。
+以上より、状態ベクトルを展開する基底を適当に選ぶと、
+\begin{align}
+  f_H(X)\ket{\psi} &= HXH^{\dagger}\ket{\psi} = HXH^{\dagger}\sum_{a=0,1}s_a\ket{a} = s_0\ket{0} - s_1\ket{1} = Z\ket{\psi} \\
+  f_H(Y)\ket{\psi} &= HYH^{\dagger}\ket{\psi} = HYH^{\dagger}\sum_{a=i,i-}s_a\ket{a} = -s_{i}\ket{i} + s_{i-}\ket{i-} = -Y\ket{\psi} \\
+  f_H(Z)\ket{\psi} &= HZH^{\dagger}\ket{\psi} = HZH^{\dagger}\sum_{a=+,-}s_a\ket{a} = s_{+}\ket{+} - s_{-}\ket{-} = X\ket{\psi}
+\end{align}
+が成立することがわかる。以上より、
+\begin{equation}
+  f_H(I) = I,\quad f_{H}(X) = Z,\quad f_H(Y) = -Y,\quad f_H(Z) = X  
+\end{equation}
+となるため、
+\begin{equation}
+  f_H(\cdot) = 
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\ 0 & 0 & 0 & 1 \\ 
+    0 & 0 & -1 & 0 \\ 0 & 1 & 0 & 0
+  \end{pmatrix}_{\text{HS}}
+\end{equation}
+と表現できる。これから、Hadamardゲート操作が$x$軸と$z$軸の取り換えを行い、$y$軸に関する反転に対応していると読み取れる。
 
 
 \end{document}
