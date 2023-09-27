@@ -1,0 +1,154 @@
+%ctrl+alt+m：open Math Preview
+\documentclass[a4paper,11pt,uplatex]{jsarticle}%titlepage
+%:/usr/local/texlive/texmf-local/tex/latex/report/report.sty
+\usepackage{myreport}
+\title{量子科学入門ゼミ　第1章から第3章まで}
+\author{東工大物理学系B4 松本侑真}
+\date{\today}
+\begin{document}
+\maketitle
+\begin{abstract}
+  量子科学入門の第1章から第3章の終わりまでについて、本の行間などをまとめた。
+  第1章では量子ビットを記述するための簡単な線形代数の基礎と、Diracのブラケット記法の準備を行う。
+  第2章では古典回路モデルと量子回路モデルの基礎を扱い、特に量子回路がユニタリ演算子によって構成されることを見る。
+  第3章では量子アルゴリズムの代表例として、
+  \begin{itemize}
+    \item Deutsch-Jozsaのアルゴリズム（定数関数/バランス関数判定問題）
+    \item Gloverのアルゴリズム（探索問題）
+    \item Shorのアルゴリズム（素因数分解問題）
+  \end{itemize}
+  について扱う。なお、第0章のお話はまとめていない。
+\end{abstract}
+\tableofcontents
+\newpage
+
+\section{第1章}
+
+\subsection{Diracの表記法}
+Diracの表記法とは、ベクトルや行列を簡潔に表すことのできる表記法である。
+{\LaTeX}では、braketパッケージやphysicsパッケージを用いると簡単に書くことができる。自分はphysicsパッケージを用いている。
+縦ベクトルをブラ、横ベクトルをケットで表すことで、行列やベクトルの演算を直感的に操作できるようになる。
+量子情報で良く出てくる記号として、
+
+\begin{equation}
+  \ket{0} = 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  ,\quad \ket{1} = 
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+  \in \mathbb{C}^2
+\end{equation}
+の計算基底（$z$基底）がある。1つの量子ビットの状態は、計算基底の線形結合によって表される。
+そして、計算基底は正規直交基底となっている。すなわち、$i,j\in\{0,1\}$として
+\begin{equation}
+  \braket{i}{j} = \delta_{ij}
+\end{equation}
+が成立する。ここで出てくる記号
+\begin{equation}
+  \braket{\cdot}{\cdot}
+\end{equation}
+は2つのベクトルの内積を表す。
+例えば、
+\begin{equation}
+  \braket{0}{1} = 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  \cdot
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 \\ 1
+  \end{pmatrix}
+  = 0
+\end{equation}
+である。すなわち、ブラベクトルとは、ケットベクトルの共役転置（Hermite共役）である：
+\begin{equation}
+  \bra{x} = \ket{x}^{\dagger}\;。
+\end{equation}
+他にも、Hadamard基底（$x$基底）
+\begin{equation}
+  \ket{+} = \frac{1}{\sqrt{2}}(\ket{0}+\ket{1}),\quad \ket{-} = \frac{1}{\sqrt{2}}(\ket{0}-\ket{1})
+\end{equation}
+や、円基底（$y$基底）
+\begin{equation}
+  \ket{i}=\frac{1}{\sqrt{2}}(\ket{0}+i\ket{1}),\quad\ket{i-}=\frac{1}{\sqrt{2}}(\ket{0}-i\ket{1})
+\end{equation}
+などが良く出てくる。これらは、計算基底に特定のユニタリ演算子を作用させることで変換することができる。
+
+ブラとケットをその順番に並べたものは内積を意味するのであった。ケットとブラの順番に並べたものは行列を意味する。
+例えば、
+\begin{equation}
+  \ketbra{0}{1} = 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1
+  \end{pmatrix}
+  =\begin{pmatrix}
+    0 & 1 \\ 0 & 0
+  \end{pmatrix}
+\end{equation}
+である。この演算（ケットブラ）は慣れるまで分かりづらいかもしれないが、
+行列とは最終的になんらかのベクトル$\ket{\psi}=(a\quad b)^{\top}\in\mathbb{C}^2$に作用するものなので、
+\begin{equation}
+  \qty(\ketbra{0}{1})\ket{\psi} = \ket{0}\qty(\braket{1}{\psi}) = \braket{1}{\psi}\ket{0}
+\end{equation}
+と理解する方が簡単である。この計算を行列の成分表示に翻訳すると、
+\begin{equation}
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  \begin{pmatrix}
+    0 & 1
+  \end{pmatrix}
+  \begin{pmatrix}
+    a \\ b
+  \end{pmatrix}
+  = 
+  \begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+  (0\times a + 1\times b)
+  =
+  b\begin{pmatrix}
+    1 \\ 0
+  \end{pmatrix}
+\end{equation}
+となる。行列の成分表示での計算は面倒であるが、ブラケット記法に慣れてくると一瞬で計算することができる。
+\begin{equation}
+  \ket{\psi}=
+  \begin{pmatrix}
+    a \\ b
+  \end{pmatrix}
+  =a\ket{0} + b\ket{1}
+\end{equation}
+であるため、
+\begin{equation}
+  \ket{0}\!\!\bra{1}\ket{\psi} =\ketbra{0}{1}(a\ket{0}+b\ket{1}) = b\ket{0}
+\end{equation}
+といった要領である。ここで、$\ket{0},\,\ket{1}$の正規直交性を頭の中で用いた。
+ブラケット記法のまま計算できないと、量子計算の意味を捉えにくいため、早めにこの記法に慣れておこう。
+大事なことは、ブラケット演算はスカラーとなり、ケットブラ演算は行列になるということである。
+また、
+
+
+
+
+\subsection{量子ビット系}
+
+\section{第2章}
+
+\section{第3章}
+
+
+\end{document}
