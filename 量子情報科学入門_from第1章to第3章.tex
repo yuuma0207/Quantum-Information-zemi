@@ -154,9 +154,46 @@ Diracの表記法とは、ベクトルや行列を簡潔に表すことのでき
 となることも重要な性質であり、式変形で良く出てくる。
 これは、$\ket{0},\,\ket{1}$が基底であることから得られる性質である。
 
-
-
 \subsection{量子ビット系}
+量子ビット系とは、2つの基底$\ket{\phi_0},\,\ket{\phi_1}$の線形結合により表される状態からなる系のことである。
+状態$\ket{\psi}$を基底$\{\ket{\phi_0},\,\ket{\phi_1}\}$の元で測定すると、
+$\ket{\phi_0}$もしくは$\ket{\phi_1}$の状態が得られる。その確率はそれぞれ
+\begin{equation}
+  P_0 \propto \abs{\braket{\phi_0}{\psi}}^2,\quad P_1 \propto \abs{\braket{\phi_1}{\psi}}^2
+\end{equation}
+である。
+\subsubsection{状態の規格化とグローバル位相について}
+$\alpha$を$0$でない任意の複素数として、状態$\ket{\psi}$と状態$\alpha\ket{\psi}$は同じ状態とみなす。
+そのため、$\braket{\psi}=1$となるように規格化をしているものとする。
+一般の量子力学の問題では規格化を考えないことも考えることもあるが、量子コンピュータの文脈では必ず規格化していることに注意。
+規格化条件を課してもなお状態に不定性が残る。なぜなら、状態$\ket{\psi}$に絶対値1の複素数$\beta$をかけてもノルムは1だからである。
+また、絶対値1の複素数$\beta$は、実数$\phi$を用いて
+\begin{equation}
+  \beta=e^{i\phi} = \cos\phi+i\sin\phi
+\end{equation}
+と表すことができる。この実数を位相(phase)と呼ぶ。それぞれの基底の観測確率は変わらないため、位相が状態にかかったものは元と同じ状態とみなすことができる。
+このような不定性を、グローバル位相による不定性と呼び、普通は$\phi=0$として考える。
+しかし、``グローバル''でない位相のかかり方をしているものは異なることに注意。すなわち、
+\begin{equation}
+  \ket{\psi}=a\ket{0}+b\ket{1}
+\end{equation}
+と、
+\begin{equation}
+  \ket{\psi'}=a\ket{0}+e^{i\phi}b\ket{1}
+\end{equation}
+は異なる状態である。確かに$\ket{0}$と$\ket{1}$を観測する確率は変化してないが、
+異なる基底に変換した際に、その基底で観測する確率は$\ket{\psi}$と$\ket{\psi'}$で異なる。
+これは、密度行列が異なるため（$\ketbra{\psi}\neq\ketbra{\psi'}$）とも理解できる。
+基底ベクトル$\ket{\phi_i}$によって展開される一般の状態
+\begin{equation}
+  \ket{\psi}=\sum_{i=1}^{n}C_i\ket{\phi_i}
+\end{equation}
+に対して、物理量$\hat{O}$の期待値は、
+\begin{equation}
+  \ev{\hat{O}} = \sum_{i=1}^{n}p_i\ev{\hat{O}}{\phi_i} 
+  = \sum_{i=1}^{n} \abs{C_i}^2\ev{\hat{O}}{\phi_i} 
+  = \sum_{i=1}^{n}\braket{}{}
+\end{equation}
 
 \section{第2章}
 
