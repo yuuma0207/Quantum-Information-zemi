@@ -184,16 +184,259 @@ $\alpha$を$0$でない任意の複素数として、状態$\ket{\psi}$と状態
 は異なる状態である。確かに$\ket{0}$と$\ket{1}$を観測する確率は変化してないが、
 異なる基底に変換した際に、その基底で観測する確率は$\ket{\psi}$と$\ket{\psi'}$で異なる。
 これは、密度行列が異なるため（$\ketbra{\psi}\neq\ketbra{\psi'}$）とも理解できる。
-基底ベクトル$\ket{\phi_i}$によって展開される一般の状態
+
+\subsubsection{ブロッホ球について}
+別プリントを参照
+
+\subsection{基本的な量子回路と、状態の時間発展}
+量子力学では、状態ベクトル$\ket{\psi}$で記述される系の時間発展はSchr\"{o}dinger方程式で表される：
 \begin{equation}
-  \ket{\psi}=\sum_{i=1}^{n}C_i\ket{\phi_i}
+  i\hbar\dv{t}\ket{\psi(t)}=\hat{H}\ket{\psi(t)}\;。
 \end{equation}
-に対して、物理量$\hat{O}$の期待値は、
+ここで、$\hat{H}$は量子系のHamilton演算子（古典的にはエネルギーに対応するもの）である。
+したがって、初期条件を$t=0$で$\ket{\psi(t)}=\ket{\psi(0)}$と置くと、一般解は
 \begin{equation}
-  \ev{\hat{O}} = \sum_{i=1}^{n}p_i\ev{\hat{O}}{\phi_i} 
-  = \sum_{i=1}^{n} \abs{C_i}^2\ev{\hat{O}}{\phi_i} 
-  = \sum_{i=1}^{n}\braket{}{}
+  \ket{\psi(t)}=e^{-i\hat{H}t/\hbar}\ket{\psi(0)}
 \end{equation}
+と求まる。ここで、指数関数の肩に載っているのは演算子（例えば$\hat{H}=-\frac{\hbar^2}{2m}\pdv[2]{x}$とか）であるため、通常の意味での指数関数ではないことに注意。
+\footnote{一般に、演算子$\hat{A}$が肩に載った指数関数演算子$e^{\hat{A}}$は、
+\begin{equation}
+  e^{\hat{A}}=\sum_{n=0}^{\infty}\frac{1}{n!}\hat{A}^n
+\end{equation}
+で定義される。そのため、2つの演算子$\hat{A},\,\hat{B}$の交換関係が$0$でない場合$([\hat{A},\hat{B}]\neq0)$は、
+指数関数演算子も非可換となる。}
+この演算子を時間発展演算子と呼び、ユニタリ演算子である：
+\begin{equation}
+  UU^{\dagger}=U^{\dagger}U=I\quad(U=e^{-i\hat{H}t/\hbar})\;。
+\end{equation}
+ユニタリ演算子によって時間発展が行われるということは、内積が不変であるということである。
+物理的には、確率が保存していることに対応している。
+また、$t=0$における$\hat{H}$の固有値問題
+\begin{equation}
+  \hat{H}\ket{\phi}=E\ket{\phi}
+\end{equation}
+が解けたとして、固有値と固有ベクトルの組として
+\begin{equation}
+(E_0,\,\ket{\phi_0}),\,(E_1,\,\ket{\phi_1}),\ldots,\,(E_n,\,\ket{\phi_n})
+\end{equation}
+が得られたとしよう。このとき、固有ベクトルの組は完全性を為しているものとする。
+すると、任意の状態は固有ベクトルと複素数$C_i$を用いて
+\begin{equation}
+  \ket{\psi(0)}=\sum_{i=1}^{n}C_i\ket{\phi_i}
+\end{equation}
+と展開できる。また、固有ベクトルに対する時間発展は
+\begin{equation}
+  \ket{\phi_i(t)}=e^{-i\hat{H}t/\hbar}\ket{\phi_i(0)} = e^{-iE_it/\hbar}\ket{\phi_i(0)}
+\end{equation}
+と計算することができる。つまり、右辺の指数関数がスカラーとなることが嬉しい。
+これを用いると、一般の状態の時間発展は、
+\begin{equation}
+  \ket{\psi(t)}=\sum_{i=1}^{n}C_ie^{-iE_it/\hbar}\ket{\phi_i(0)}
+\end{equation}
+と求めることができる。時刻$t=0$における固有値問題さえ解いておけば、状態の時間発展を計算することができる。
+この考え方は院試でも頻出なので良く理解しておこう。
+量子コンピュータの文脈でもこの考え方を用いる。
+量子ビット系で実現される時間変化は、とあるユニタリ演算子$\hat{U}$によって記述される：
+\begin{equation}
+  \ket{\psi}'=\hat{U}\ket{\psi}\;。
+\end{equation}
+このような時間変化を、状態のユニタリ発展と呼ぶ。1つの量子ビット系は普通$\mathbb{C}^2$のベクトルで記述されるため、
+このユニタリ演算子は$2\times 2$の複素行列で表される。
+\subsubsection{良く出てくるユニタリ行列}
+\begin{itemize}
+  \item 単位行列とPauli行列$\sigma_x,\,\sigma_y,\,\sigma_z$
+  \begin{equation}
+    I=
+    \begin{pmatrix}
+    1 & 0 \\ 0 & 1  
+    \end{pmatrix}
+    ,\quad\sigma_x = 
+    \begin{pmatrix}
+      0 & 1 \\ 1 & 0
+    \end{pmatrix}
+    ,\quad\sigma_y = 
+    \begin{pmatrix}
+      0 & -i \\ i & 0
+    \end{pmatrix}
+    ,\quad\sigma_z = 
+    \begin{pmatrix}
+      1 & 0 \\ 0 & -1
+    \end{pmatrix}
+  \end{equation}
+  \begin{itemize}
+    \item Pauli行列は、$\sigma_x=\sigma_1,\,\sigma_y=\sigma_2,\,\sigma_z=\sigma_3$とも表される。2次の単位行列を$\sigma_0$とすることもある。
+    \item Pauli行列はエルミートかつユニタリであり、トレースレスで反交換関係が$0$になり、2乗すると単位行列になるような$2\times 2$行列として特徴づけられる。
+    \begin{align}
+      \Trace{\sigma_i}&=0\quad(i=1,\,2,\,3) \\ 
+      \qty{\sigma_1,\sigma_2}&=\qty{\sigma_2,\sigma_3}=\qty{\sigma_3,\sigma_1}=0
+    \end{align}
+    \item 良く使う関係式
+    \begin{align}
+      \sigma_i\sigma_j &= i\varepsilon_{ijk}\sigma_k + \delta_{ij}I\\
+      (\bm{\sigma}\cdot\bm{a})(\bm{\sigma}\cdot\bm{b})&=(\bm{a}\cdot\bm{b})\sigma_0+i(\bm{a}\cross\bm{b})\cdot\bm{\sigma}
+    \end{align}
+  \end{itemize}
+\end{itemize}
+Pauli行列は量子ビットの回転にも用いられる。
+$\bm{n}=(n_x,\,n_y,\,n_z)$をノルム1の方向ベクトルとすると、以下の行列指数関数
+\begin{equation}
+  e^{-i(\bm{n}\cdot\bm{\sigma})\theta}=\sum_{n=0}^{\infty}\frac{(-i)^{n}}{n!}(\bm{n}\cdot\bm{\sigma})^n\theta^n = \cos\theta - i\sin\theta(\bm{n}\cdot\bm{\sigma})
+\end{equation}
+が量子ビットの回転を司る演算子となる。
+``量子ビットの回転''とは、量子ビットのBloch球表現において、Bloch球上の対応する座標を指すベクトルが回転しているという意味である。
+すなわち、Bloch球上の極座標表示$(\sin\theta\cos\varphi,\,\sin\theta\sin\varphi,\,\cos\theta)$に対応する状態ベクトルは
+\begin{equation}
+  \ket{\psi}=\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}
+\end{equation}
+であった。ここで、$R_{\bm{n}}(\theta)\coloneqq e^{-i(\bm{n}\cdot\bm{\sigma})\theta/2}$と定義すると、
+\begin{equation}
+  R_{\bm{n}}(\alpha)\ket{\psi}
+\end{equation}
+という変換は、Bloch球上のベクトルを方向ベクトル$\bm{n}$の周りに$\alpha$回転させる変換に対応している。
+例えば、$\bm{n}=(0,0,1)$とすると、
+\begin{align}
+  R_{\bm{n}}(\alpha)\ket{\psi}&=
+  \qty(\cos{\frac{\alpha}{2}}-i\sin\frac{\alpha}{2}\sigma_z)\qty(\cos\frac{\theta}{2}\ket{0}+e^{i\varphi}\sin\frac{\theta}{2}\ket{1}) \\
+  &= \qty(\cos\frac{\alpha}{2}-i\sin\frac{\alpha}{2})\cos\frac{\theta}{2}\ket{0}+\qty(\cos\frac{\alpha}{2}+i\sin\frac{\alpha}{2})e^{i\varphi}\sin\frac{\theta}{2}\ket{1} \\
+  &= e^{-i\alpha/2}\qty(\cos\frac{\theta}{2}\ket{0}+e^{i(\varphi+\alpha)}\sin\frac{\theta}{2}\ket{1}) \sim \cos\frac{\theta}{2}\ket{0}+e^{i(\varphi+\alpha)}\sin\frac{\theta}{2}\ket{1}
+\end{align}
+となるため、確かに$z$軸回りに$\alpha$回転する変換となっている。（グローバル位相だけ違う状態は同じ量子状態である。）
+1量子ビットの変換は、全て$R_{\bm{n}}(\theta)$演算子によって記述することができる。
+そのうち、特別な変換には特別な記号が与えられている：
+\begin{gather}
+  X = \sigma_x= iR_{(1,0,0)}(\pi),\quad Y = \sigma_y = iR_{(0,1,0)}(\pi),\quad Z = \sigma_z =iR_{(0,0,1)}(\pi)\quad(\text{Pauliゲート}), \\
+  H=iR_{(1/\sqrt{2},0,1/\sqrt{2})}(\pi)\quad(\text{Hadamardゲート}), \\
+  S= e^{i\pi/4}R_{(0,0,1)}(\pi/2),\quad T=e^{i\pi/8}R_{(0,0,1)}(\pi/4)。
+\end{gather}
+$X,\,Y,\,Z$は直感的にわかりやすい変換であると思う。それぞれの固有ベクトルは、Hadamard基底、円基底、計算基底である：
+\begin{equation}
+  X\ket{+}=\ket{+},\,X{\ket{-}}=-\ket{-},\quad Y\ket{i}=\ket{i},\,Y\ket{i-}=-\ket{i-},\quad Z\ket{0}=\ket{0},\,Z\ket{1}=-\ket{1}\;。
+\end{equation}
+Pauliゲートと呼ばれるのは、これらの変換を行列表示した際に各Pauli行列と一致しているためである。
+全体に$i$倍のズレは生じるが、Pauli行列を量子状態に作用させると、それは各座標軸回りに$\pi$回転するようなものになっていると理解できる。
+また、量子計算において大事なのは、計算基底$\ket{0},\,\ket{1}$がどのように変換するかということである。
+そのため、各Pauliゲートによって計算基底がどのように変化するかをまとめておく。なお、$a=\{0,1\}$とする：
+\begin{equation}
+  X\ket{a}=\ket{\bar{a}},\quad Y\ket{a}=(-1)^{a}i\ket{\bar{a}},\quad Z\ket{a}=(-1)^{a}\ket{a}。
+\end{equation}
+$X$と$Y$が作用すると$\ket{0}\leftrightarrow\ket{1}$の変換が生じることは、Bloch球での回転を考えたらわかる。
+ただし、係数が$-1$倍されたりされなかったり、$i$倍されたりされなかったりするのは覚えるしかない。
+$X$を作用させるときに$Y$や$Z$と同じように$-1$倍の相対位相がつかない理由としては、Hadamardゲート$H$が
+\begin{equation}
+  H=\frac{1}{\sqrt{2}}(X+Z)
+\end{equation}
+と表されるためだと考えれば良い。$H$が上のように$(X+Z)/\sqrt{2}$によって表されるHermite演算子であることと、
+\begin{equation}
+  H\ket{0}=\frac{1}{\sqrt{2}}(\ket{0}+\ket{1})=\ket{+},\quad H\ket{1}=\frac{1}{\sqrt{2}}(\ket{0}-\ket{1})=\ket{-}
+\end{equation}
+となることは常識にしておく必要がある（Bloch球上で$(1,0,1)$方向の$\pi$回転を考えればわかる）のだが、もしも$X\ket{a}=(-1)^{a}\ket{\bar{a}}$と表されるとしたら、
+$H\ket{0} = H\ket{1}$となってしまうため、$X\ket{a}=\ket{\bar{a}}$（NOT演算）となるのだなと考えれば良い。
+NOT演算という見方と対比させると、$Z$は相対位相の反転のみ、$Y$は（グローバル位相の変化を除いて）NOT演算と位相反転を行う演算子と考えることもできる。
+実際に、$X$ゲートをNOTゲート、$Z$ゲートを位相反転ゲートとも呼ぶ。同様に、$S$ゲートは$SS=Z$であるため、$z$方向の$\pi/2$の位相シフトゲート、
+$T$は$TT=S$より$z$方向の$\pi/4$の位相シフトゲートと考えれば良い。
+（つまり、$Z$ゲートと同じように、$\ket{1}$にだけそれぞれのゲートに対する位相が付く。）
+
+\subsection{多量子ビット系}
+いままでは全て1量子ビット系を考えてきた。多数の量子ビットを考えるような系ももちろん存在する。
+例えば、1つの粒子の状態を1量子ビットの状態に対応させて考えたとしよう。この粒子が2つあるような系は2量子ビット系に対応させて考える必要ができる。
+すなわち、粒子1の状態と粒子2の状態の組が系の状態を指定するということである。
+このように考えると、$n$個の粒子が存在する系の取りうる状態は、$2^n$個存在することがわかると思う。
+一般に、$n$ビット系では$2^n$次元のベクトル（各成分は$0$か$1$）を用いてビットの状態を区別する。
+これを数学的に表す方法として、テンソル積というものを用いる。
+テンソル積の具体的な定義の説明は難しいが、具体的に扱うのはとても簡単である。
+例として、2量子ビット系の表現方法を考えてみる。量子ビット$1$と、量子ビット$2$が$\ket{\psi_1},\,\ket{\psi_2}$と表されるとする：
+\begin{equation}
+  \ket{\psi_1}=
+  \begin{pmatrix}
+    \alpha \\ \beta
+  \end{pmatrix},\quad\ket{\psi_2}=
+  \begin{pmatrix}
+    \gamma \\ \delta 
+  \end{pmatrix}。
+\end{equation}
+このとき、量子ビット$1$と量子ビット$2$の全体系の量子ビット状態$\ket{\psi}$はテンソル積$\otimes$を用いて
+\begin{equation}
+  \ket{\psi}=\ket{\psi_1}\otimes\ket{\psi_2} = 
+  \begin{pmatrix}
+    \alpha\ket{\psi_2} \\ \beta\ket{\psi_2}
+  \end{pmatrix}
+  =\begin{pmatrix}
+    \alpha\gamma \\ \alpha\delta \\ \beta\gamma \\ \beta\delta
+  \end{pmatrix}
+\end{equation}
+と表される。一般に行列同士のテンソル積というものも同じように考えられる。例えば、
+\begin{equation}
+  A=
+  \begin{pmatrix}
+    A_{11} & A_{12} \\
+    A_{21} &  A_{22} 
+  \end{pmatrix}
+\end{equation}
+として、$B$を適当な$m\times n$行列とすると、
+\begin{equation}
+  A\otimes B  = 
+  \begin{pmatrix}
+    A_{11}B & A_{12}B \\
+    A_{21}B &  A_{22}B 
+  \end{pmatrix}
+\end{equation}
+と計算されて、$2m\times2n$行列となる。
+イメージとしては、テンソル積の左にある行列が、テンソル積をした後の行列全体の形を決定し、右の行列が局所的な形を決定しているという感じである。
+そのため、
+\begin{equation}
+  I_{2}\otimes\sigma_1 = 
+  \begin{pmatrix}
+    1\times\sigma_1 & 0\times\sigma_1 \\
+    0\times\sigma_1 & 1\times\sigma_1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    0 & 1 & 0 & 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+  \end{pmatrix}
+\end{equation}
+と計算できる。ただ、量子計算においてはテンソル積の行列表示を書き下すことはない。
+なぜなら、テンソル積同士の積は、それぞれの場所における行列積のテンソル積になるためである：
+\begin{equation}
+  (A\otimes B)(C\otimes D) = AC\otimes BD\;。
+\end{equation}
+つまり、1量子ビットにおける演算をマスターしておけば、多量子ビット系では単純に各量子ビットの演算をした後にテンソル積を作れば良い。
+例として、$\ket{0}\otimes\ket{0}$の状態の1量子ビット目に$X$ゲート、2量子ビット目に$H$ゲートを作用させた場合、
+\begin{equation}
+  (X\otimes H)\ket{0}\otimes\ket{0} = X\ket{0}\otimes H\ket{0} = \ket{1}\otimes\qty(\frac{1}{\sqrt{2}}(\ket{0}+\ket{1})) = \frac{1}{\sqrt{2}}(\ket{1}\otimes\ket{0}+\ket{1}\otimes\ket{1})
+\end{equation}
+と計算できる。また、いちいち$\otimes$を付けるのがめんどくさいので、
+\begin{equation}
+  \ket{i}\otimes\ket{j} = \ket{i}\ket{j}=\ket{ij}
+\end{equation}
+のように書くことが多い。
+
+\subsubsection*{一般の多量子ビット状態について}
+量子状態の線形結合もまた量子状態となる。そのため、テンソル積をした量子状態の線形結合もまた量子状態となる。
+すなわち、
+\begin{equation}
+  \frac{1}{\sqrt{2}}(\ket{00}+\ket{11})
+  \label{eq:ent}
+\end{equation}
+のようなものも2量子ビットの状態として考えることができる。そして、これは1つのテンソル積にまとめて表すことができない。
+このようなものをエンタングル状態と呼び、量子テレポーテーションなどで大事な役割を果たす。
+これに対比させて、1つのテンソル積で表せる状態は積状態と呼ぶ。
+結局のところ、
+\begin{equation}
+  \text{「$n$個の1量子ビットのテンソル積」}\Rightarrow \text{「$n$量子ビット状態」}
+\end{equation}
+だが、
+\begin{equation}
+  \text{「$n$量子ビット状態」} \Rightarrow \text{「$n$個の1量子ビットのテンソル積」}
+\end{equation}
+ではないということである。積状態とエンタングル状態の本質的な違いは、とある1つの量子ビットの測定結果がその他の量子ビットの測定結果に影響を与えるか否かである。
+積状態であれば、各量子ビットが独立しているとみなせるため、とある量子ビットを測定しても、他の量子ビットの状態は何も変わらない。
+しかし、例えば式\eqref{eq:ent}のエンタングル状態であれば、1量子ビット目の観測を行った結果$\ket{0}$であれば、
+2量子ビット目の状態は$\ket{0}$に確定する。
+なぜなら、式\eqref{eq:ent}のエンタングル状態には$\ket{01}$という状態が存在しないためである。
+
 
 \section{第2章}
 

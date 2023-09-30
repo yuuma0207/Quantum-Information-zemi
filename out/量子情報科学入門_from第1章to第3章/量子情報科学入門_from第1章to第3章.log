@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  30 SEP 2023 11:26
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  30 SEP 2023 17:05
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1289,21 +1289,35 @@ LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
 [2]
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
 (Font)              scaled to size 4.62341pt on input line 152.
-[3] [4]
+[3]
+LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
+(Font)              scaled to size 7.39746pt on input line 207.
+LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
+(Font)              scaled to size 5.5481pt on input line 207.
+[4]
+LaTeX Font Info:    Font shape `JT2/hmc/bx/n' in size <10> not available
+(Font)              Font shape `JT2/hgt/m/n' tried instead on input line 267.
+LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 267.
+LaTeX Font Info:    Font shape `JY2/hmc/bx/n' in size <10> not available
+(Font)              Font shape `JY2/hgt/m/n' tried instead on input line 267.
+LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
+(Font)              scaled to size 9.24683pt on input line 267.
+[5] [6] [7] [8]
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.aux)
 Package rerunfilecheck Info: File `量子情報科学入門_from第1章to第3
 章.out' has not changed.
-(rerunfilecheck)             Checksum: CD2CF67A08DC12756633702FF4440DE1;465.
+(rerunfilecheck)             Checksum: E5DE33C9290207A1D16C2F56B01F8C11;771.
  ) 
 Here is how much of TeX's memory you used:
- 38283 strings out of 475422
- 778422 string characters out of 5788032
- 1138594 words of memory out of 5000000
- 59429 multiletter control sequences out of 15000+600000
- 524197 words of font info for 147 fonts, out of 8000000 for 9000
+ 38291 strings out of 475422
+ 778516 string characters out of 5788032
+ 1145961 words of memory out of 5000000
+ 59436 multiletter control sequences out of 15000+600000
+ 524776 words of font info for 150 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 99i,7n,94p,555b,1252s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,94p,555b,1349s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on out/量子情報科学入門_from第1章to第3章/量子情
-報科学入門_from第1章to第3章.dvi (4 pages, 19876 bytes).
+報科学入門_from第1章to第3章.dvi (8 pages, 51072 bytes).
