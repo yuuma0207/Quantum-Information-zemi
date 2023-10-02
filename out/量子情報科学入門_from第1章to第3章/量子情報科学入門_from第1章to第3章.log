@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  30 SEP 2023 17:05
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  2 OCT 2023 10:35
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1094,38 +1094,38 @@ Package: jvlisting 2011/11/17 v0.7 Formatted Program Listings
 \postlistingpenalty=\count407
 ))
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 8.
+h' as default language. on input line 11.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 8.
+(Font)              scaled to size 9.24683pt on input line 11.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 8.
+(Font)              scaled to size 9.24683pt on input line 11.
 
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.aux)
 \openout1 = `量子情報科学入門_from第1章to第3章.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for JY2/mc/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for JT2/mc/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 8.
-LaTeX Font Info:    ... okay on input line 8.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for JY2/mc/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for JT2/mc/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 *geometry* driver: auto-detecting
 *geometry* detected driver: dvips
 *geometry* verbose mode - [ preamble ] result:
@@ -1170,7 +1170,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
 
-Package chemgreek Info: Activating mapping `default' on line 8.
+Package chemgreek Info: Activating mapping `default' on line 11.
 
 
 Package siunitx Warning: Detected the "physics" package:
@@ -1190,8 +1190,8 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 8.
-Package hyperref Info: Link coloring ON on input line 8.
+or `english'. on input line 11.
+Package hyperref Info: Link coloring ON on input line 11.
 
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.out)
@@ -1203,63 +1203,63 @@ m第1章to第3章.out)
 \c@lstlisting=\count408
 \docmute@nestinglevel=\count409
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 10.
+(Font)              scaled to size 15.9785pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 15.9785pt on input line 10.
+(Font)              scaled to size 15.9785pt on input line 13.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 10.
+(Font)              scaled to size 11.09619pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 10.
+(Font)              scaled to size 11.09619pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 10.
+(Font)              scaled to size 7.39746pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 10.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 10.
+(Font)              scaled to size 5.5481pt on input line 13.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 13.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 10.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
 
 (/usr/local/texlive/2022/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 10
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 13
 .
 (/usr/local/texlive/2022/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 10.
+(Font)              scaled to size 11.09619pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 10.
+(Font)              scaled to size 7.39746pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 10.
+(Font)              scaled to size 5.5481pt on input line 13.
 LaTeX Font Info:    Trying to load font information for U+esvect on input line 
-10.
+13.
 (/usr/local/texlive/2022/texmf-dist/tex/latex/esvect/uesvect.fd
 File: uesvect.fd 
 )
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 10.
+(Font)              scaled to size 8.32214pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 10.
+(Font)              scaled to size 8.32214pt on input line 13.
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 10.
+(Font)              scaled to size 8.32214pt on input line 13.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 8.32214pt on input line 10.
+(Font)              scaled to size 8.32214pt on input line 13.
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 22.
+(Font)              scaled to size 9.24683pt on input line 25.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 22.
+(Font)              scaled to size 9.24683pt on input line 25.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 13.31541pt on input line 22.
+(Font)              scaled to size 13.31541pt on input line 25.
 LaTeX Font Info:    Font shape `JY2/hmc/m/n' will be
-(Font)              scaled to size 13.31541pt on input line 22.
+(Font)              scaled to size 13.31541pt on input line 25.
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 13.31541pt on input line 22.
+(Font)              scaled to size 13.31541pt on input line 25.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 13.31541pt on input line 22.
+(Font)              scaled to size 13.31541pt on input line 25.
 
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.toc
@@ -1281,29 +1281,32 @@ LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
 
 ]
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 27.
+(Font)              scaled to size 11.09619pt on input line 30.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 11.09619pt on input line 27.
+(Font)              scaled to size 11.09619pt on input line 30.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 6.47278pt on input line 29.
+(Font)              scaled to size 6.47278pt on input line 32.
 [2]
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 4.62341pt on input line 152.
+(Font)              scaled to size 4.62341pt on input line 155.
 [3]
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 7.39746pt on input line 207.
+(Font)              scaled to size 7.39746pt on input line 210.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
-(Font)              scaled to size 5.5481pt on input line 207.
+(Font)              scaled to size 5.5481pt on input line 210.
 [4]
 LaTeX Font Info:    Font shape `JT2/hmc/bx/n' in size <10> not available
-(Font)              Font shape `JT2/hgt/m/n' tried instead on input line 267.
+(Font)              Font shape `JT2/hgt/m/n' tried instead on input line 270.
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 267.
+(Font)              scaled to size 9.24683pt on input line 270.
 LaTeX Font Info:    Font shape `JY2/hmc/bx/n' in size <10> not available
-(Font)              Font shape `JY2/hgt/m/n' tried instead on input line 267.
+(Font)              Font shape `JY2/hgt/m/n' tried instead on input line 270.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 9.24683pt on input line 267.
-[5] [6] [7] [8]
+(Font)              scaled to size 9.24683pt on input line 270.
+[5] [6] [7]
+LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
+(Font)              No change on input line 456.
+[8]
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.aux)
 Package rerunfilecheck Info: File `量子情報科学入門_from第1章to第3
@@ -1311,13 +1314,13 @@ Package rerunfilecheck Info: File `量子情報科学入門_from第1章to第3
 (rerunfilecheck)             Checksum: E5DE33C9290207A1D16C2F56B01F8C11;771.
  ) 
 Here is how much of TeX's memory you used:
- 38291 strings out of 475422
- 778516 string characters out of 5788032
- 1145961 words of memory out of 5000000
- 59436 multiletter control sequences out of 15000+600000
- 524776 words of font info for 150 fonts, out of 8000000 for 9000
+ 38322 strings out of 475422
+ 779238 string characters out of 5788032
+ 1146959 words of memory out of 5000000
+ 59466 multiletter control sequences out of 15000+600000
+ 525122 words of font info for 151 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
- 99i,11n,94p,555b,1349s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,11n,94p,494b,1349s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on out/量子情報科学入門_from第1章to第3章/量子情
-報科学入門_from第1章to第3章.dvi (8 pages, 51072 bytes).
+報科学入門_from第1章to第3章.dvi (8 pages, 56060 bytes).
