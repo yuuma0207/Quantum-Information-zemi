@@ -658,8 +658,53 @@ Deutsch-Jozsaのアルゴリズムは、与えられた関数が定数関数か�
 一方、確率的計算であっても、確率1で正しく判定するためには指数回の質問が必要である。
 しかし、量子計算の場合、Deutsch-Jozsaのアルゴリズムを用いることで、$1$回の質問で$f$が定数関数かバランス関数かを判定することができる。
 
+関数$f$はオラクルとして与えられえているので、量子回路からこのオラクルに質問するためには、回路の素子としてこのオラクルを実装する必要がある。
+ここでは、$n$量子ビットと$1$量子ビットの$2$つの量子ビット列に作用するユニタリ行列$U_f$としてオラクルが実装されているとする：
+\begin{equation}
+  U_f\ket{x}\ket{b} = \ket{x}\ket{b\oplus f(x)}\;。
+\end{equation}
+この回路は初期量子ビット列$\ket{0^{n+1}}=\ket{0^n}\ket{0}$を入力として受け取り、回路が出力する量子ビット列を測定することで$U_f$に関する情報を得る。
 
-
+\subsubsection*{Deutsch-Jozsaのアルゴリズム}
+Deutsch-Jozsaのアルゴリズムは、以下のような構成である：
+\begin{itemize}
+  \item $n+1$ビット目のみにPauli行列$\sigma_1$を作用させる
+  \item $n+1$ビット全体にHadamard変換$H$を作用させる
+  \item $n+1$ビット全体に$U_f$を作用させる
+  \item 最初の$n$ビット全体にHadamard変換$H$を作用させる
+  \item 最初の$n$ビット全体を測定する
+\end{itemize}
+まず、$n+1$ビット目に$\sigma_1$を作用させることで、
+\begin{equation}
+  \sigma_1\ket{0^n}\ket{0} = \ket{0^n}\ket{1}
+\end{equation}
+となる。次に、$n+1$ビット全体にHadamard変換を作用させることで、$N=2^n$として
+\begin{equation}
+  H^{\otimes n+1}\ket{0^{n}}\ket{1} = \frac{1}{\sqrt{2N}}\sum_{x\in\{0,1\}^n}\ket{x}(\ket{0}-\ket{1})
+\end{equation}
+となる。この状態に$U_f$を作用させると、
+\begin{equation}
+  U_f\frac{1}{\sqrt{2N}}\sum_{x\in\{0,1\}^n}\ket{x}(\ket{0}-\ket{1}) = \frac{1}{\sqrt{2N}}\sum_{x\in\{0,1\}^n}\ket{x}(\ket{f(x)}-\ket{\lnot f(x)})
+  = \frac{1}{\sqrt{2N}}\sum_{x\in\{0,1\}^n}(-1)^{f(x)}\ket{x}(\ket{0}-\ket{1})
+\end{equation}
+を得る。ここで、任意の$x\in\{0,1\}^n$に対して
+\begin{equation}
+  H^{\otimes n}\ket{x} = \frac{1}{\sqrt{2^n}}\sum_{y\in\{0,1\}^n} (-1)^{\langle x,y \rangle}\ket{y}
+\end{equation}
+が成立することを用いる。なお、
+\begin{equation}
+  \langle x,y \rangle = \sum_{i=1}^{n}x_iy_i
+\end{equation}
+である。これは、$y$を2進数表記の$i$桁目の値$y_i$が$1$であり、かつ$x$の2進数表記の$i$桁目の値$x_i$が$1$であるときに、符号を$-1$倍することを表している。
+このように変換された状態のうち、最初の$\ket{0^n}$の振幅に注目すると、
+\begin{equation}
+  \Pr{\text{測定結果が}\ket{0^n}\text{である}} = \abs{\frac{1}{N}\sum_{x\in\{0,1\}^n}(-1)^{f(x)}}^2 = 
+  \begin{cases}
+    1 & \text{$f$が定数関数} \\
+    0 & \text{$f$がバランス関数}
+  \end{cases}
+\end{equation}
+となることがわかる。すなわち、$f$が定数関数であるとき、測定結果は$\ket{0^n}$となり、$f$がバランス関数であるとき、測定結果は$\ket{0^n}$でない状態が得られる。
 
 
 \subsection{Gloverのアルゴリズム}
