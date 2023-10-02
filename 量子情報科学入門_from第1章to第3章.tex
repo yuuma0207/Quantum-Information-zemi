@@ -441,6 +441,7 @@ $T$は$TT=S$より$z$方向の$\pi/4$の位相シフトゲートと考えれば�
 なぜなら、式\eqref{eq:ent}のエンタングル状態には$\ket{01}$という状態が存在しないためである。
 
 \section{第2章}
+\subsection{古典回路}
 \vskip\baselineskip
 \begin{tcolorbox}[
 colback = white,
@@ -549,7 +550,121 @@ fonttitle = \bfseries]
   を得る。ただし、一般の$n$についての証明はよくわからない。（大きな$n$でしか問題にならないので考えなくても大丈夫な気がする。）
 \end{proof}
 
+\subsection{量子回路}
+1量子ビットに作用する量子回路は第1章で紹介した。
+複数量子ビットに作用する演算子も存在する。
+代表的なものとして、CNOTゲートがある。CNOTゲートが作用する例は以下のようなものである：
+\begin{figure}[H]
+  \centering
+\begin{quantikz}[thin lines]
+  \lstick{$\ket{0}$} & \gate{H} & \ctrl{1} & \qw\\
+  \lstick{$\ket{0}$} & \qw & \targ{} & \qw
+\end{quantikz}
+\end{figure}
+CNOTゲートは、1量子ビット目を制御ビット、2量子ビット目をターゲットビットとして、制御ビットが$\ket{1}$のときにのみターゲットビットに$X$ゲートを作用させるものである。
+したがって、
+\begin{equation}
+ \text{CNOT} H_0\ket{00}= \text{CNOT}\frac{1}{\sqrt{2}}(\ket{0}+\ket{1})\ket{0} = \frac{1}{\sqrt{2}}(\ket{00}+\ket{11})
+\end{equation}
+と状態が変化する。この状態はBell状態と呼ばれ、エンタングルメントしている。
+なお、$H_{0}=H\otimes I$である。
+多量子ビットを制御ビットとするCNOTゲートも考えることができる。
+2つの量子ビットを制御ビットとするCNOTゲートは、TofforiゲートもしくはCCNOTゲートと呼ばれる。
+
+また、量子アルゴリズムで良く使われる量子回路として、
+\def\myvdots{\ \vdots\ }
+\begin{figure}[H]
+  \centering
+  \begin{quantikz}[thin lines]
+    \lstick[wires=4]{$n$} 
+    & \lstick{$\ket{0}$} & \gate{H} & \gate[wires=4,nwires=3][1.5cm]{U} & \qw \\
+    & \lstick{$\ket{0}$} & \gate{H} &  & \qw \\
+    & \lstick{\myvdots} &   \myvdots  &  \\
+    & \lstick{$\ket{0}$} & \gate{H} &  & \qw
+  \end{quantikz}
+\end{figure}
+というものがある。$U$が作用する前の状態は、
+\begin{equation}
+  H^{\otimes n}\ket{0}^{\otimes n} = H\ket{0}\otimes\cdots\otimes H\ket{0}=\frac{1}{\sqrt{2^n}}\sum_{x\in\{0,1\}^n}\ket{x}
+\end{equation}
+という状態である。これは、あらゆる$n$ビットの状態を等しい振幅で重ね合わせた状態であり、量子アルゴリズムの初期状態として良く用いられる。
+
+\subsubsection*{古典論理関数の量子回路における計算可能性}
+古典論理関数の量子回路における計算可能性について考える。まず、CCNOTが任意の$x_1,\,x_2,\,x_3\in\{0,1\}$に対して
+\begin{equation}
+  \text{CCNOT}(x_1,\,x_2,\,x_3)=(x_1,\,x_2,\,(x_1\wedge x_2)\oplus x_3)
+\end{equation}
+という変換を行うことに注目する。$x_1=x_2=1$のとき、CCNOTは
+\begin{equation}
+  \text{CCNOT}(1,\,1,\,x_3)=(1,\,1,\,x_3\oplus 1)=(1,\,1,\,\lnot x_3)
+\end{equation}
+という変換を行う。さらに、$x_3=0$を入力した場合、
+\begin{equation}
+  \text{CCNOT}(x_1,\,x_2,\,0)=(x_1,\,x_2,\,x_1\wedge x_2)
+\end{equation}
+という変換を行う。これは、ANDゲートを表している。したがって、CCNOTゲートを用いてANDゲートを作ることができる。ORゲートはこれらの組み合わせで作ることができる。
+これによって、以下の定理を得ることができる：
+\vskip\baselineskip
+\begin{tcolorbox}[
+colback = white,
+colframe = green!35!black,
+fonttitle = \bfseries]
+\begin{theorem}[古典論理関数の量子回路における計算可能性]
+  論理関数$f\colon \{0,1\}^n\to\{0,1\}$を回路サイズ$s(n)$の論理回路で計算可能な任意の関数とする。このとき、
+  \begin{equation}
+    U_f\ket{x}\ket{0}\ket{011}\ket{0^{l(n)}} = \ket{x}\ket{f(x)}\ket{011}\ket{G(x)}
+  \end{equation}
+  を満たすCCNOT素子のみからなる量子回路が存在する。ただし、$l(n)=\order{s(n)+n}$であり、$G(x)$は$l(n)$ビットの補助ビットである。
+\end{theorem}
+\end{tcolorbox}
+\vskip\baselineskip
+この場合、$\ket{G(x)}$は$U_f$による$x$の計算過程で生じる不要な量子ビットである。この情報は不要なものであり、できれば可逆計算の過程で消去したい。
+先ほどの$U_f$を2つとCNOTを1つだけ使用した量子回路$U_f'$を用いて、
+\begin{equation}
+  U_f'\ket{x}\ket{0}\ket{0}\ket{011}\ket{0^{l(n)}} = \ket{x}\ket{f(x)}\ket{0}\ket{011}\ket{0^{l(n)}}
+\end{equation}
+が成立するものが存在する。具体的な構成手順は、
+\begin{align}
+  U_f\ket{x}\ket{0}\ket{0}\ket{011}\ket{0^{l(n)}} &= \ket{x}\ket{0}\ket{f(x)}\ket{011}\ket{G(x)} \\
+  \text{CNOT}\ket{x}\ket{0}\ket{f(x)}\ket{011}\ket{G(x)} &= \ket{x}\ket{f(x)}\ket{f(x)}\ket{011}\ket{G(x)} \\
+  U_f^{-1}\ket{x}\ket{f(x)}\ket{f(x)}\ket{011}\ket{G(x)} &= \ket{x}\ket{f(x)}\ket{0}\ket{011}\ket{0^{l(n)}}
+\end{align}
+を組み合わせて
+\begin{equation}
+  U_f' = U_f^{-1}\text{CNOT}U_f
+\end{equation}
+とすればよい。
+
+\newpage
 \section{第3章}
+本章のアルゴリズムのうち、非常にわかりやすいアルゴリズムであるDeutsch-Jozsaのアルゴリズムを詳しく紹介する。
+その他のアルゴリズムについては、対象としている問題とアルゴリズムの概要を紹介する。
+\subsection{Deutsch-Jozsaのアルゴリズム}
+Deutsch-Jozsaのアルゴリズムは、与えられた関数が定数関数かバランス関数かを判定するアルゴリズムである。
+定数関数とは、すべての$x\in\{0,1\}^n$について$f(x)=0$もしくは$f(x)=1$となる関数のことであり、
+バランス関数とは、$f(x)=0$となる$x$と$f(x)=1$となる$x$が同数存在する関数、
+つまり$\qty|x\in\{0,1\}^{n}\colon f(x)=0|=2^n/2$である関数のことである。
+
+\subsubsection*{定数関数/バランス関数判定問題}
+\begin{itemize}
+  \item 入力：関数$f\colon\{0,1\}^n\to\{0,1\}$
+  \item 出力：$f$が定数関数ならば$0$、バランス関数ならば$1$
+\end{itemize}
+関数$f$はブラックボックスとして与えられている。
+このブラックボックスは、質問$x$に対してそれに対応する$f(x)$を返してくれる。
+質問を通じてのみ$f$に関する情報を得ることができる。このようなブラックボックスとして与えられた関数をオラクルと呼ぶ。
+オラクルが与えられる計算の場合、オラクルへの質問回数が計算量の指標として良く考えられ、質問計算量と呼ばれる。
+古典計算の場合、決定性計算であればどのようなアルゴリズムに対しても正しく判定するためには質問計算量が$2^{n-1}+1$の$f$が存在する。
+一方、確率的計算であっても、確率1で正しく判定するためには指数回の質問が必要である。
+しかし、量子計算の場合、Deutsch-Jozsaのアルゴリズムを用いることで、$1$回の質問で$f$が定数関数かバランス関数かを判定することができる。
+
+
+
+
+
+\subsection{Gloverのアルゴリズム}
+\subsection{Shorのアルゴリズム}
+
 
 
 \end{document}
