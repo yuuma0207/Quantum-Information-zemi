@@ -478,8 +478,76 @@ fonttitle = \bfseries]
 f(x_1,\,\ldots,\,x_{n-1},\,0)= (g(x_1,\,\ldots,\,x_{n-1})\vee 0)\wedge(h(x_1,\,\ldots,\,x_{n-1})\wedge 1)
 \end{equation}
 を計算するための素子の個数は$f(x_1,\,\ldots,\,x_{n-1})$と等しいのだろか？？
+そもそも、$g,\,h$を$5\cdot 2^{n-1}-4$個の回路計算量を持つ$n$変数古典論理回路として、$f=g\wedge h$としたら、$f$は$n$変数古典論理回路であり、必要な素子数は$2\times(5\cdot 2^{n-1}-4)+1$個にならないのか。
 
-
+\vskip\baselineskip
+\begin{tcolorbox}[
+colback = white,
+colframe = green!35!black,
+fonttitle = \bfseries]
+\begin{theorem}[回路計算量の下界]
+十分大きな任意の$n\in\mathbb{N}$に対して、ある$n$入力$1$出力の論理関数$f\colon\{0,1\}^n\to\{0,1\}$が存在して、
+その$f$の回路計算量は少なくとも$2^{n}/2n$である。
+\end{theorem}
+\end{tcolorbox}
+\vskip\baselineskip
+\begin{proof}
+  任意の$n$入力$1$出力の論理関数の総数は$2^{2^n}$である。これは、入力が$2^n$通り存在し、それぞれの入力に対して出力が$2$通り存在するためである。
+  次に、$s$個以下の素子からなる回路で構成することのできる論理回路の個数を求める。
+  まず、回路が$s$個の素子から構成されているとする。
+  $s$個の素子それぞれの接続の仕方を考えると、各素子はたかだか$2$つの入力線をもち、その入力線は他の$s-1$個の素子の出力もしくは、$n$個の入力線と接続されている。
+  つまり、1つの素子の接続方法はたかだか
+  \begin{equation}
+    \binom{n+s-1}{2}
+  \end{equation}
+  通りである。これが$s$個全ての素子で成立するため、$s$個の素子で構成で構成できる回路の個数はたかだか
+  \begin{equation}
+    \binom{n+s-1}{2}^s
+  \end{equation}
+  通りとなる。さらに、素子の種類としては$\wedge,\,\vee,\,\lnot$もしくは、何も操作をしない素子$I$で構成される。
+  例えば、$I$が$t(\leq s)$個回路中に存在すると、それは$s-t$個の素子からなる論理回路とみなすことができる。
+  したがって、$s$個以下の素子からなる論理回路で表現できる論理関数はたかだか
+  \begin{equation}
+    \binom{n+s-1}{2}^s\cdot4^s = \frac{(n+s-1)^s(n+s-2)^s}{2^s}\cdot 4^s = (2\cdot(n+s-1)(n+s-2))^s
+  \end{equation}
+  個である。$s\leq 2^n/2n$とすると、
+  \begin{align}
+    (2\cdot(n+s-1)(n+s-2))^s &\leq (2\cdot(n+2^n/2n-1)(n+2^n/2n-2))^{2^n/2n} \notag \\ 
+    &=\qty{2\qty[\qty(n^2+2^n+\qty(\frac{2^n}{2n})^2)-3\qty(n+\frac{2^n}{2n})+2]}^{2^n/2n} \notag \\
+    &=\qty[2\qty(\frac{2^n}{2n})^2]^{2^n/2n}\qty{\qty[1+\qty(\frac{2n}{2^n})^2\qty(n^2+2^n-3\qty(n+\frac{2^n}{2n})+2)]}^{2^n/2n} \notag \\
+    &\underbrace{\to}_{n\to\infty} \qty[2\qty(\frac{2^n}{2n})^2]^{2^n/2n} < \qty(2\frac{2^{2n}}{2})^{2^n/2n} = 2^{2^n}
+  \end{align}
+  と評価できる。すなわち、$s\leq 2^n/2n$のとき、$s$個以下の素子からなる論理回路で表現できる論理関数の個数は$2^{2^n}$個よりも少ない。そのため、回路計算量の下界が$2^n/2n$となるような論理関数が存在する。
+\end{proof}
+\vskip\baselineskip
+\begin{tcolorbox}[
+colback = white,
+colframe = green!35!black,
+fonttitle = \bfseries]
+\begin{theorem}[回路計算量が高い関数の割合]
+  任意の$n\in \mathbb{N}$に対して全ての$2^{2^n}$個の$n$ビット入力$1$ビット出力関数のうち、
+  $(1-2^{-(\log{n}/n)2^{n}}){2^{2^{n}}}$個以上の関数の回路計算量は少なくとも$2^n/2n$である。つまり、
+  \begin{equation}
+    \Pr\qty{\mathcal{C}(f)\geq \frac{2^n}{2n}}\geq 1-2^{-(\log{n}/n)2^{n}}
+  \end{equation}
+  となる。
+\end{theorem}
+\end{tcolorbox}
+\vskip\baselineskip
+\begin{proof}
+  $s=2^n/2n$として、
+  \begin{equation}
+     P = \frac{2^s(n+s-1)^s(n+s-2)^s}{2^{2^n}}
+  \end{equation}
+  とする。$P\leq 2^{-(\log{n}/n)2^n}$を示せばよい。
+  $2^n=2ns$なので、
+  \begin{align}
+    P &= \qty(\frac{2(n+s-1)(n+s-2)}{2^{2n}})^s = \qty(\frac{2(n+2^n/2n-1)(n+2^n/2n-2)}{2^{2n}})^{2^n/2n} \\
+    &\to \qty(\frac{2(2^n/2n)^2}{2^{2n}})^{2^n/2n} = \qty(\frac{2^{2n-1}}{2^{2n}n^2})^{2^n/2n}
+     = \qty(\frac{1}{2^{2\log{n}+1}})^{2^n/2n} \leq 2^{-(\log{n}/n)2^{n}}
+  \end{align}
+  を得る。ただし、一般の$n$についての証明はよくわからない。（大きな$n$でしか問題にならないので考えなくても大丈夫な気がする。）
+\end{proof}
 
 \section{第3章}
 
