@@ -539,7 +539,7 @@ fonttitle = \bfseries]
   \begin{equation}
      P = \frac{2^s(n+s-1)^s(n+s-2)^s}{2^{2^n}}
   \end{equation}
-  とする。$P\leq 2^{-(\log{n}/n)2^n}$を示せばよい。
+  とおく。これはランダムに論理回路を選んだ時に、$\mathcal{C}(f)\leq s$となる確率を表しているため、$P\leq 2^{-(\log{n}/n)2^n}$を示せばよい。
   $2^n=2ns$なので、
   \begin{align}
     P &= \qty(\frac{2(n+s-1)(n+s-2)}{2^{2n}})^s = \qty(\frac{2(n+2^n/2n-1)(n+2^n/2n-2)}{2^{2n}})^{2^n/2n} \\
