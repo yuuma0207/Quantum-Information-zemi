@@ -674,6 +674,15 @@ Deutsch-Jozsaのアルゴリズムは、以下のような構成である：
   \item 最初の$n$ビット全体にHadamard変換$H$を作用させる
   \item 最初の$n$ビット全体を測定する
 \end{itemize}
+このアルゴリズムの回路図は以下のようになる：\footnote{この回路図は、githubcopilotが作成してくれた。驚愕}
+\begin{figure}[H]
+  \centering
+  \begin{quantikz}[thin lines]
+    \lstick{$\ket{0^n}$} & \gate{H^{\otimes n}} & \gate[wires=2,nwires=2][1.5cm]{U_f} & \gate{H^{\otimes n}} & \meter{} \\
+    \lstick{$\ket{0}$} & \gate{X} & \qw & \qw & \qw
+  \end{quantikz}
+\end{figure}
+
 まず、$n+1$ビット目に$\sigma_1$を作用させることで、
 \begin{equation}
   \sigma_1\ket{0^n}\ket{0} = \ket{0^n}\ket{1}
