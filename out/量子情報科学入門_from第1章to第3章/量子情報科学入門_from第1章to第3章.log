@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  3 OCT 2023 13:00
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  3 OCT 2023 13:09
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1415,11 +1415,11 @@ LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
 [5] [6] [7]
 LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
 (Font)              No change on input line 457.
-LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
-(Font)              No change on input line 496.
 [8]
 LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
-(Font)              No change on input line 539.
+(Font)              No change on input line 507.
+LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
+(Font)              No change on input line 550.
 [9] [10] [11] [12] [13]
 (out/量子情報科学入門_from第1章to第3章/量子情報科学入門_fro
 m第1章to第3章.aux)
@@ -1430,11 +1430,11 @@ Package rerunfilecheck Info: File `量子情報科学入門_from第1章to第3
 Here is how much of TeX's memory you used:
  42112 strings out of 475422
  878858 string characters out of 5788032
- 1272945 words of memory out of 5000000
+ 1274458 words of memory out of 5000000
  63163 multiletter control sequences out of 15000+600000
  525478 words of font info for 153 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  113i,20n,110p,1215b,1657s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on out/量子情報科学入門_from第1章to第3章/量子情
-報科学入門_from第1章to第3章.dvi (13 pages, 143336 bytes).
+報科学入門_from第1章to第3章.dvi (13 pages, 144876 bytes).
