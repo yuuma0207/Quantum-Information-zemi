@@ -689,8 +689,8 @@ Deutsch-Jozsaのアルゴリズムは、以下のような構成である：
 \begin{figure}[H]
   \centering
   \begin{quantikz}[thin lines]
-    \lstick{$\ket{0^n}$} & \gate{H^{\otimes n}} & \gate[wires=2,nwires=2][1.5cm]{U_f} & \gate{H^{\otimes n}} & \meter{} \\
-    \lstick{$\ket{0}$} & \gate{X} & \qw & \qw & \qw
+    \lstick{$\ket{0^n}$} &\qw & \gate[wires=2]{H^{\otimes n+1}} & \gate[wires=2,nwires=2][1.5cm]{U_f} & \gate{H^{\otimes n}} & \meter{} \\
+    \lstick{$\ket{0}$} & \gate{X} & \qw & \qw & \qw & \qw
   \end{quantikz}
 \end{figure}
 
