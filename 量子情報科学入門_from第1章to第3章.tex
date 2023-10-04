@@ -727,6 +727,70 @@ Deutsch-Jozsaのアルゴリズムは、以下のような構成である：
 となることがわかる。すなわち、$f$が定数関数であるとき、測定結果は$\ket{0^n}$となり、$f$がバランス関数であるとき、測定結果は$\ket{0^n}$でない状態が得られる。
 
 \subsection{Gloverのアルゴリズム}
+Gloverのアルゴリズムは、Deutsch-Jozsaのアルゴリズムより汎用的なアルゴリズムである。
+このアルゴリズムは、与えられた関数$f\colon\{0,1\}^n\to\{0,1\}$の充足解、すなわち$f(x_0)=1$となる$x_0$を見つけるという一般的な探索問題に適用できる。
+このアルゴリズムにおいてカギを握るのが、Gloverの拡散行列$D_{N}$というものである。これは、$N=2^n$として$N\times N$次元の行列であり、
+\begin{equation}
+  D_N = 
+  \begin{pmatrix}
+    \frac{2}{N}-1 & \frac{2}{N} & \cdots & \frac{2}{N} \\
+    \frac{2}{N} & \frac{2}{N}-1 & \cdots & \frac{2}{N} \\
+    \vdots & \vdots & \ddots & \vdots \\
+    \frac{2}{N} & \frac{2}{N} & \cdots & \frac{2}{N}-1
+  \end{pmatrix}
+\end{equation}
+と定義されるものである。まずは、この行列が
+\begin{equation}
+  \ket{s} = \frac{1}{\sqrt{N}}\sum_{x\in\{0,1\}^n}\ket{x}
+\end{equation}
+として、
+\begin{equation}
+  D_N = -I + 2\ketbra{s}{s}
+\end{equation}
+と表されることを証明する。
+\begin{proof}
+  数学的帰納法により示す。$n=1$のとき、
+  \begin{equation}
+    \ketbra{s} = \frac{1}{2}\qty(\ketbra{0}{0}+\ketbra{0}{1} + \ketbra{1}{0} + \ketbra{1}{1}) = \frac{1}{2}\mqty(1 & 1 \\ 1 & 1) =\frac{1}{2}M_{1}
+  \end{equation}
+  である。なお、$M_n$は$2^n\times 2^n$次元の行列であり、
+  \begin{equation}
+    M_n=
+    \begin{pmatrix}
+      1 & 1 & \cdots & 1 \\
+      1 & 1 & \cdots & 1 \\
+      \vdots & \vdots & \ddots & \vdots \\
+      1 & 1 & \cdots & 1
+    \end{pmatrix}
+  \end{equation}
+  である。
+  \begin{equation}
+    \sum_{x\in\{0,1\}^n}\ket{x} = \sum_{x\in\{0,1\}^{n-1}}\ket{x}\otimes\sum_{i=\{0,1\}}\ket{i}
+  \end{equation}
+  であることから、
+  \begin{align}
+    \ketbra{s}{s} = \frac{1}{N}\qty(\sum_{x\in\{0,1\}^{n-1}}\ket{x}\otimes\sum_{i=\{0,1\}}\ket{i})\qty(\sum_{x\in\{0,1\}^{n-1}}\bra{x}\otimes\sum_{i=\{0,1\}}\bra{i})
+    = \frac{1}{N}M_{n-1}\otimes M_{1} = \frac{1}{N}M_n
+  \end{align}
+  と計算できる。したがって、
+  \begin{equation}
+    D_N = -I + 2\ketbra{s}
+  \end{equation}
+  となる。拡散行列が$\ket{x}$に作用すると、
+  \begin{equation}
+    D_N\ket{x} = -\ket{x} + \frac{2}{\sqrt{N}}\ket{s}\!\!\braket{s}{x} = -\ket{x}+\frac{2}{\sqrt{N}}\ket{s}
+  \end{equation}
+  となるため、
+  \begin{align}
+    D_N\qty(-\ket{x_0}+\sum_{x\neq x_0}\ket{x}) &= \ket{x_0}-\frac{2}{\sqrt{N}}\ket{s} + \sum_{x\neq x_0}\qty(-\ket{x}+\frac{2}{\sqrt{N}}\ket{s}) 
+    = \ket{x_0}+ \frac{2}{\sqrt{N}}(N-2)\ket{s} - \sum_{x\neq x_0}\ket{x} \\
+    &= \qty(1+\frac{2}{N}(N-2))\ket{x_0}+\qty(\frac{2}{N}(N-2)-1)\sum_{x\neq x_0}\ket{x} \\
+    &= (3-4/N)\ket{x_0}+(1-4/N)\sum_{x\neq x_0}\ket{x}
+  \end{align}
+  と計算できる。
+\end{proof}
+
+
 \subsection{Shorのアルゴリズム}
 
 
