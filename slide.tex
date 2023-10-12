@@ -1,0 +1,255 @@
+\RequirePackage{plautopatch}
+\documentclass[14pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
+\usepackage{bxdpx-beamer} % dvipdfmxなので必要
+\usepackage{appendixnumberbeamer}
+
+%Beamerの設定
+\usetheme{Boadilla}
+
+%Beamerフォント設定
+\usefonttheme{professionalfonts} % Be professional!
+\usepackage[T1]{fontenc}
+\usepackage{mlmodern}  % 太いComputer Modern
+% MLmodernのバグを修正: cf. https://tex.stackexchange.com/questions/646333/size-of-integral-symbol-in-section-header-with-mlmodern
+\DeclareFontFamily{OMX}{mlmex}{}
+\DeclareFontShape{OMX}{mlmex}{m}{n}{%
+   <->mlmex10%
+   }{} 
+\usepackage{newtxtext} % 数式以外をTXフォントで上書き
+\usepackage[deluxe,uplatex]{otf} % 日本語多ウェイト化
+\usepackage{physics,bm}
+\usepackage{mhchem}
+\usepackage{amsmath,amsfonts,amssymb,mathtools,amsthm}
+\DeclareMathOperator{\sgn}{sgn}
+\renewcommand{\familydefault}{\sfdefault}  % 英文をサンセリフ体に
+\renewcommand{\kanjifamilydefault}{\gtdefault}  % 日本語をゴシック体に
+\usefonttheme{structurebold} % タイトル部を太字
+\setbeamerfont{alerted text}{series=\bfseries} % Alertを太字
+\setbeamerfont{section in toc}{series=\mdseries} % 目次は太字にしない
+\setbeamerfont{frametitle}{size=\Large} % フレームタイトル文字サイズ
+\setbeamerfont{title}{size=\LARGE} % タイトル文字サイズ
+\setbeamerfont{date}{size=\small}  % 日付文字サイズ
+
+% Babel (日本語の場合のみ・英語の場合は不要)
+\uselanguage{japanese}
+\languagepath{japanese}
+\deftranslation[to=japanese]{Theorem}{定理}
+\deftranslation[to=japanese]{Lemma}{補題}
+\deftranslation[to=japanese]{Example}{例}
+\deftranslation[to=japanese]{Examples}{例}
+\deftranslation[to=japanese]{Definition}{定義}
+\deftranslation[to=japanese]{Definitions}{定義}
+\deftranslation[to=japanese]{Problem}{問題}
+\deftranslation[to=japanese]{Solution}{解}
+\deftranslation[to=japanese]{Fact}{事実}
+\deftranslation[to=japanese]{Proof}{証明}
+\def\proofname{証明}
+
+%Beamer色設定
+\definecolor{UniBlue}{RGB}{0,150,200} 
+\definecolor{AlertOrange}{RGB}{255,76,0}
+\definecolor{AlmostBlack}{RGB}{38,38,38}
+\setbeamercolor{normal text}{fg=AlmostBlack}  % 本文カラー
+\setbeamercolor{structure}{fg=UniBlue} % 見出しカラー
+\setbeamercolor{block title}{fg=UniBlue!50!black} % ブロック部分タイトルカラー
+\setbeamercolor{alerted text}{fg=AlertOrange} % \alert 文字カラー
+\mode<beamer>{
+    \definecolor{BackGroundGray}{RGB}{254,254,254}
+    \setbeamercolor{background canvas}{bg=BackGroundGray} % スライドモードのみ背景をわずかにグレーにする
+}
+
+%フラットデザイン化
+\setbeamertemplate{blocks}[rounded] % Blockの影を消す
+\useinnertheme{circles} % 箇条書きをシンプルに
+\setbeamertemplate{navigation symbols}{} % ナビゲーションシンボルを消す
+\setbeamertemplate{footline}[frame number] % フッターはスライド番号のみ
+\setbeamerfont{footline}{size=\small}    % フッターを大きくした
+
+%タイトルページ
+\setbeamertemplate{title page}{%
+    \vspace{2.5em}
+    {\usebeamerfont{title} \usebeamercolor[fg]{title} \inserttitle \par}
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle \par}
+    \vspace{1.5em}
+    \begin{flushright}
+        \usebeamerfont{author}\insertauthor\par
+        \usebeamerfont{institute}\insertinstitute \par
+        \vspace{3em}
+        \usebeamerfont{date}\insertdate\par
+      \end{flushright}
+      \vspace{-6em}
+      \begin{flushleft}
+        \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+      \end{flushleft}
+}
+
+% Algorithm系
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\algsetup{linenosize=\color{fg!50}\footnotesize}
+\renewcommand\algorithmicdo{:}
+\renewcommand\algorithmicthen{:}
+\renewcommand\algorithmicrequire{\textbf{Input:}}
+\renewcommand\algorithmicensure{\textbf{Output:}}
+
+% 定理
+\theoremstyle{definition}
+\newenvironment{mythm}{\begin{alertblock}{定理}}{\end{alertblock}} %自分の結果は赤色で表示
+
+\AtBeginSection[]{
+    \frame{\tableofcontents[currentsection, hideallsubsections]} %目次スライド
+}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{array} % needed for \arraybackslash
+\usepackage{adjustbox} % for \adjincludegraphics
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\makeatletter
+\chardef\zenkakuSpace=\jis"2121\relax % 和文ゴースト用全角スペース
+
+\def\serifRoman#1{%
+  \ifnum0\ifnum#1<1 1\fi\ifnum#1>12 1\fi>0 %%% 引数が 1～12 の範囲外ならエラー
+    \@latex@error{\string\serifRoman: #1 must be 1..12}\@ehc
+  \fi
+  \zenkakuSpace\kern-1zw\relax %%% ゴースト処理（入口側）
+  \begingroup
+  \@tempcnta="215F\relax
+  \advance\@tempcnta by #1\relax
+  \kchardef\@roman@char=\ucs\@tempcnta\relax %% 今回対象のローマ数字
+  \kchardef\@roman@I=\ucs"2160\relax %% ヒゲとして利用するローマ数字Ⅰ
+  \@tempdima=-.132zw\relax
+  \@tempdimb=.134zw\relax
+  \@tempdimc=1zw\relax
+  \setbox1\hbox to 1zw{\yoko\hfill
+    \begin{tikzpicture}[baseline=(A.base),inner sep=0pt, outer sep=0pt]%
+    \path[use as bounding box] (-.5\@tempdimc, -.5\@tempdimc) rectangle (.5\@tempdimc, .5\@tempdimc);
+    \node (A) {\@roman@char};
+    \ifcase#1
+      \or % Ⅰ
+        \@serifRoman@a{.45}{0}% 上ヒゲ
+        \@serifRoman@b{.45}{0}% 下ヒゲ
+      \or % Ⅱ
+        \@serifRoman@a{.80}{0}% 上ヒゲ
+        \@serifRoman@b{.80}{0}% 下ヒゲ
+      \or % Ⅲ
+        \@serifRoman@a{1.10}{0}% 上ヒゲ
+        \@serifRoman@b{1.10}{0}% 下ヒゲ
+      \or % Ⅳ
+        \@serifRoman@a{.60}{-.24}% 左上ヒゲ
+        \@serifRoman@a{.30}{.38}%% 右上ヒゲ
+        \@serifRoman@b{.30}{-.35}% 左下ヒゲ
+      \or % Ⅴ
+        \@serifRoman@a{.30}{-.28}% 左上ヒゲ
+        \@serifRoman@a{.30}{.28}%% 右上ヒゲ
+      \or % Ⅵ
+        \@serifRoman@a{.30}{-.38}% 左上ヒゲ
+        \@serifRoman@a{.60}{.24}%% 右上ヒゲ
+        \@serifRoman@b{.30}{.34}%% 右下ヒゲ
+      \or % Ⅶ
+        \@serifRoman@a{.30}{-.41}% 左上ヒゲ
+        \@serifRoman@a{.75}{.20}%% 右上ヒゲ
+        \@serifRoman@b{.52}{.28}%% 右下ヒゲ
+      \or % Ⅷ
+        \@serifRoman@a{.30}{-.41}% 左上ヒゲ
+        \@serifRoman@a{.82}{.18}%% 右上ヒゲ
+        \@serifRoman@b{.65}{.245}% 右下ヒゲ
+      \or % Ⅸ
+        \@serifRoman@a{.25}{.33}%% 右上ヒゲ
+        \@serifRoman@a{.55}{-.22}% 左上ヒゲ
+        \@serifRoman@b{.55}{-.22}% 左下ヒゲ
+        \@serifRoman@b{.25}{.36}%% 右下ヒゲ
+      \or % Ⅹ
+        \@serifRoman@a{.25}{.23}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.23}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.26}% 左下ヒゲ
+        \@serifRoman@b{.25}{.26}%% 右下ヒゲ
+      \or % Ⅺ
+        \@serifRoman@a{.55}{.23}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.34}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.36}% 左下ヒゲ
+        \@serifRoman@b{.55}{.23}%% 右下ヒゲ
+      \or % Ⅻ
+        \@serifRoman@a{.75}{.20}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.38}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.40}% 左下ヒゲ
+        \@serifRoman@b{.75}{.20}%% 右下ヒゲ
+    \fi
+    \end{tikzpicture}%
+    \hfill}%
+  \box1\relax
+  \endgroup
+  \kern-1zw\relax\zenkakuSpace %%% ゴースト処理（出口側）
+}
+\def\@serifRoman@a#1#2{%
+  \node[rotate=90,xscale=.7,yscale=#1] at ($(A.north) + (#2\@tempdimc,\@tempdima)$) {\@roman@I};
+}
+\def\@serifRoman@b#1#2{%
+  \node[rotate=90,xscale=.7,yscale=#1] at ($(A.south) + (#2\@tempdimc,\@tempdimb)$) {\@roman@I};
+}
+\makeatother
+%\usepackage{xcolor}
+
+%タイトル
+\title{J.W.Negele, Nuclear Mean-Field Theory, Physics Today 38, 24(1985)}
+\author{\textbf{松本侑真}\and \textbf{A}}
+\date{\today}
+\institute{原子核理論 関澤研究室}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{通信を含む計算問題に対するプロトコル}
+  \begin{exampleblock}{背景}
+    \begin{itemize}
+      \item 入力が複数のパーティ（人）に分割されている環境において、
+            何らかのタスクを実行する状況はデータが大規模化した今日ではよく表れる。
+      \item そのような状況下において問題を解くためのモデルの重要性が高まっている。
+    \end{itemize}
+  \end{exampleblock}
+  このようなモデルのうち最も簡素なものが\textbf{同時メッセージパッシングモデル：SMPモデル}
+\end{frame}
+
+\begin{frame}{定義5.1（同時メッセージパッシングモデル）}
+  \begin{block}{設定}
+    \begin{itemize}
+      \item Aは入力$x\in\{0,1\}^n$、Bは入力$y\in\{0,1\}^n$を持つ。
+      \item レフェリーRは入力を持たないが、AおよびBはRにメッセージを送ることができる。
+      \item AとBは互いにメッセージを送ることができないし、RからAやBにメッセージを送ることもできない。
+      \item さらに、A、B、Rで共有するものは何もない。
+            \footnote{AとBが共有ビット列や量子状態を持つと設定することもある。}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{定義5.1（同時メッセージパッシングモデル）}
+  p169の図を入れる
+  \begin{block}{目的}
+    レフェリーRが$f(x,y)$を出力する。ここで、関数$f$はA、B、Rすべてにとって既知とする。
+  \end{block}
+\end{frame}
+\begin{frame}{定義5.1（同時メッセージパッシングモデル）}
+  \begin{block}{計算量}
+    \begin{itemize}
+      \item AおよびBがRに送るメッセージ長の和（ビット数の和）のみ考慮する。
+      \item 関数$f$の通信計算量とは、$f(x,y)$を計算するA、B、Rのアルゴリズム（通信プロトコル）すべてにおいて
+            計算量が最小となるような通信プロトコルの計算量を指す。
+    \end{itemize}
+  \end{block}
+  \begin{align*}
+    \mathcal{C}(f) = \min_{\text{通信プロトコル$\pi$}}\max_{x,y}\{\text{$\pi$の計算量}\}
+  \end{align*}
+\end{frame}
+
+\begin{frame}{等価性関数}
+  \begin{alertblock}{定理5.10 (Buhrman-Cleve-Watrous-de Wolf)}
+    
+    $EQ_{n}$を成功確率$2/3$以上で解くための量子通信計算量は$\order{\log{n}}$である。
+  \end{alertblock}
+
+  
+
+\end{frame}
+
+
+\end{document}
