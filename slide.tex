@@ -191,10 +191,11 @@
 %\usepackage{xcolor}
 
 %タイトル
-\title{J.W.Negele, Nuclear Mean-Field Theory, Physics Today 38, 24(1985)}
-\author{\textbf{松本侑真}\and \textbf{A}}
-\date{\today}
-\institute{原子核理論 関澤研究室}
+\title{基礎から学ぶ量子計算 アルゴリズムと計算量理論}
+\subtitle{5.7 通信を含む計算問題に対する量子プロトコル \\
+          5.8 そのほかの量子アルゴリズム}
+\author{\textbf{松本侑真}\and \textbf{中西泰一}}
+\date{2023/11/27}
 
 \begin{document}
 \maketitle
@@ -217,17 +218,19 @@
       \item レフェリーRは入力を持たないが、AおよびBはRにメッセージを送ることができる。
       \item AとBは互いにメッセージを送ることができないし、RからAやBにメッセージを送ることもできない。
       \item さらに、A、B、Rで共有するものは何もない。
-            \footnote{AとBが共有ビット列や量子状態を持つと設定することもある。}
     \end{itemize}
   \end{block}
 \end{frame}
 
 \begin{frame}{定義5.1（同時メッセージパッシングモデル）}
-  p169の図を入れる
+  \begin{center}
+  \adjincludegraphics[height=0.3\linewidth]{SMP.png}
+  \end{center}
   \begin{block}{目的}
     レフェリーRが$f(x,y)$を出力する。ここで、関数$f$はA、B、Rすべてにとって既知とする。
   \end{block}
 \end{frame}
+
 \begin{frame}{定義5.1（同時メッセージパッシングモデル）}
   \begin{block}{計算量}
     \begin{itemize}
@@ -241,14 +244,36 @@
   \end{align*}
 \end{frame}
 
-\begin{frame}{等価性関数}
+\begin{frame}{等価性関数 (equality function)}
+  SMPモデルにおける代表的な関数$f$の1つが等価性関数
+  $EQ_{n} \colon \{0,1\}^{n}\times\{0,1\}^{n}\rightarrow\{0,1\}$
+  であり、
+  \begin{equation}
+    EQ_{n}(x,y) = 
+    \begin{cases}
+      1 & (x=y) \\
+      0 & (x\neq y)
+    \end{cases}
+  \end{equation}
+  と定義される。
   \begin{alertblock}{定理5.10 (Buhrman-Cleve-Watrous-de Wolf)}
-    
     $EQ_{n}$を成功確率$2/3$以上で解くための量子通信計算量は$\order{\log{n}}$である。
   \end{alertblock}
+  古典的なメッセージ送信のみで$EQ_n$を成功確率$2/3$以上で解くための通信計算量は$\Omega(\sqrt{n})$
+  であることが知られている。
+\end{frame}
 
-  
-
+\begin{frame}{そのほかの量子アルゴリズム}
+  本章で紹介してきた量子アルゴリズムは2000年代の初期までには発見されていた。
+  現在ではより複雑な量子アルゴリズムのサブルーチンとしてや、古典アルゴリズムとの組み合わせとして使われている。
+  \vfill
+  \begin{itemize}
+    \item ランダムウォークの量子版である量子ウォークを用いたアルゴリズム
+    \item 連立一次方程式を高速に解くHHLアルゴリズム
+    \item 行列の特異値分解をもとにした量子特異値変換アルゴリズム
+  \end{itemize}
+  \vfill
+  などが比較的応用範囲が広いアルゴリズムである。
 \end{frame}
 
 
