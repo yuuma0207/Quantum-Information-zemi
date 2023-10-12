@@ -1,0 +1,304 @@
+\RequirePackage{plautopatch}
+\documentclass[14pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
+\usepackage{bxdpx-beamer} % dvipdfmxなので必要
+\usepackage{appendixnumberbeamer}
+
+%Beamerの設定
+\usetheme{Boadilla}
+
+%Beamerフォント設定
+\usefonttheme{professionalfonts} % Be professional!
+\usepackage[T1]{fontenc}
+\usepackage{mlmodern}  % 太いComputer Modern
+% MLmodernのバグを修正: cf. https://tex.stackexchange.com/questions/646333/size-of-integral-symbol-in-section-header-with-mlmodern
+\DeclareFontFamily{OMX}{mlmex}{}
+\DeclareFontShape{OMX}{mlmex}{m}{n}{%
+   <->mlmex10%
+   }{} 
+\usepackage{newtxtext} % 数式以外をTXフォントで上書き
+\usepackage[deluxe,uplatex]{otf} % 日本語多ウェイト化
+\usepackage{physics,bm}
+\usepackage{color}
+\usepackage{mhchem}
+\usepackage{amsmath,amsfonts,amssymb,mathtools,amsthm}
+\DeclareMathOperator{\sgn}{sgn}
+\renewcommand{\familydefault}{\sfdefault}  % 英文をサンセリフ体に
+\renewcommand{\kanjifamilydefault}{\gtdefault}  % 日本語をゴシック体に
+\usefonttheme{structurebold} % タイトル部を太字
+\setbeamerfont{alerted text}{series=\bfseries} % Alertを太字
+\setbeamerfont{section in toc}{series=\mdseries} % 目次は太字にしない
+\setbeamerfont{frametitle}{size=\Large} % フレームタイトル文字サイズ
+\setbeamerfont{title}{size=\LARGE} % タイトル文字サイズ
+\setbeamerfont{date}{size=\small}  % 日付文字サイズ
+
+% Babel (日本語の場合のみ・英語の場合は不要)
+\uselanguage{japanese}
+\languagepath{japanese}
+\deftranslation[to=japanese]{Theorem}{定理}
+\deftranslation[to=japanese]{Lemma}{補題}
+\deftranslation[to=japanese]{Example}{例}
+\deftranslation[to=japanese]{Examples}{例}
+\deftranslation[to=japanese]{Definition}{定義}
+\deftranslation[to=japanese]{Definitions}{定義}
+\deftranslation[to=japanese]{Problem}{問題}
+\deftranslation[to=japanese]{Solution}{解}
+\deftranslation[to=japanese]{Fact}{事実}
+\deftranslation[to=japanese]{Proof}{証明}
+\def\proofname{証明}
+
+%Beamer色設定
+\definecolor{UniBlue}{RGB}{0,150,200} 
+\definecolor{AlertOrange}{RGB}{255,76,0}
+\definecolor{AlmostBlack}{RGB}{38,38,38}
+\setbeamercolor{normal text}{fg=AlmostBlack}  % 本文カラー
+\setbeamercolor{structure}{fg=UniBlue} % 見出しカラー
+\setbeamercolor{block title}{fg=UniBlue!50!black} % ブロック部分タイトルカラー
+\setbeamercolor{alerted text}{fg=AlertOrange} % \alert 文字カラー
+\mode<beamer>{
+    \definecolor{BackGroundGray}{RGB}{254,254,254}
+    \setbeamercolor{background canvas}{bg=BackGroundGray} % スライドモードのみ背景をわずかにグレーにする
+}
+
+%フラットデザイン化
+\setbeamertemplate{blocks}[rounded] % Blockの影を消す
+\useinnertheme{circles} % 箇条書きをシンプルに
+\setbeamertemplate{navigation symbols}{} % ナビゲーションシンボルを消す
+\setbeamertemplate{footline}[frame number] % フッターはスライド番号のみ
+\setbeamerfont{footline}{size=\small}    % フッターを大きくした
+
+%タイトルページ
+\setbeamertemplate{title page}{%
+    \vspace{2.5em}
+    {\usebeamerfont{title} \usebeamercolor[fg]{title} \inserttitle \par}
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle \par}
+    \vspace{1.5em}
+    \begin{flushright}
+        \usebeamerfont{author}\insertauthor\par
+        \usebeamerfont{institute}\insertinstitute \par
+        \vspace{3em}
+        \usebeamerfont{date}\insertdate\par
+      \end{flushright}
+      \vspace{-6em}
+      \begin{flushleft}
+        \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+      \end{flushleft}
+}
+
+% Algorithm系
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\algsetup{linenosize=\color{fg!50}\footnotesize}
+\renewcommand\algorithmicdo{:}
+\renewcommand\algorithmicthen{:}
+\renewcommand\algorithmicrequire{\textbf{Input:}}
+\renewcommand\algorithmicensure{\textbf{Output:}}
+
+% 定理
+\theoremstyle{definition}
+\newenvironment{mythm}{\begin{alertblock}{定理}}{\end{alertblock}} %自分の結果は赤色で表示
+
+\AtBeginSection[]{
+    \frame{\tableofcontents[currentsection, hideallsubsections]} %目次スライド
+}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{array} % needed for \arraybackslash
+\usepackage{adjustbox} % for \adjincludegraphics
+
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\makeatletter
+\chardef\zenkakuSpace=\jis"2121\relax % 和文ゴースト用全角スペース
+
+\def\serifRoman#1{%
+  \ifnum0\ifnum#1<1 1\fi\ifnum#1>12 1\fi>0 %%% 引数が 1～12 の範囲外ならエラー
+    \@latex@error{\string\serifRoman: #1 must be 1..12}\@ehc
+  \fi
+  \zenkakuSpace\kern-1zw\relax %%% ゴースト処理（入口側）
+  \begingroup
+  \@tempcnta="215F\relax
+  \advance\@tempcnta by #1\relax
+  \kchardef\@roman@char=\ucs\@tempcnta\relax %% 今回対象のローマ数字
+  \kchardef\@roman@I=\ucs"2160\relax %% ヒゲとして利用するローマ数字Ⅰ
+  \@tempdima=-.132zw\relax
+  \@tempdimb=.134zw\relax
+  \@tempdimc=1zw\relax
+  \setbox1\hbox to 1zw{\yoko\hfill
+    \begin{tikzpicture}[baseline=(A.base),inner sep=0pt, outer sep=0pt]%
+    \path[use as bounding box] (-.5\@tempdimc, -.5\@tempdimc) rectangle (.5\@tempdimc, .5\@tempdimc);
+    \node (A) {\@roman@char};
+    \ifcase#1
+      \or % Ⅰ
+        \@serifRoman@a{.45}{0}% 上ヒゲ
+        \@serifRoman@b{.45}{0}% 下ヒゲ
+      \or % Ⅱ
+        \@serifRoman@a{.80}{0}% 上ヒゲ
+        \@serifRoman@b{.80}{0}% 下ヒゲ
+      \or % Ⅲ
+        \@serifRoman@a{1.10}{0}% 上ヒゲ
+        \@serifRoman@b{1.10}{0}% 下ヒゲ
+      \or % Ⅳ
+        \@serifRoman@a{.60}{-.24}% 左上ヒゲ
+        \@serifRoman@a{.30}{.38}%% 右上ヒゲ
+        \@serifRoman@b{.30}{-.35}% 左下ヒゲ
+      \or % Ⅴ
+        \@serifRoman@a{.30}{-.28}% 左上ヒゲ
+        \@serifRoman@a{.30}{.28}%% 右上ヒゲ
+      \or % Ⅵ
+        \@serifRoman@a{.30}{-.38}% 左上ヒゲ
+        \@serifRoman@a{.60}{.24}%% 右上ヒゲ
+        \@serifRoman@b{.30}{.34}%% 右下ヒゲ
+      \or % Ⅶ
+        \@serifRoman@a{.30}{-.41}% 左上ヒゲ
+        \@serifRoman@a{.75}{.20}%% 右上ヒゲ
+        \@serifRoman@b{.52}{.28}%% 右下ヒゲ
+      \or % Ⅷ
+        \@serifRoman@a{.30}{-.41}% 左上ヒゲ
+        \@serifRoman@a{.82}{.18}%% 右上ヒゲ
+        \@serifRoman@b{.65}{.245}% 右下ヒゲ
+      \or % Ⅸ
+        \@serifRoman@a{.25}{.33}%% 右上ヒゲ
+        \@serifRoman@a{.55}{-.22}% 左上ヒゲ
+        \@serifRoman@b{.55}{-.22}% 左下ヒゲ
+        \@serifRoman@b{.25}{.36}%% 右下ヒゲ
+      \or % Ⅹ
+        \@serifRoman@a{.25}{.23}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.23}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.26}% 左下ヒゲ
+        \@serifRoman@b{.25}{.26}%% 右下ヒゲ
+      \or % Ⅺ
+        \@serifRoman@a{.55}{.23}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.34}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.36}% 左下ヒゲ
+        \@serifRoman@b{.55}{.23}%% 右下ヒゲ
+      \or % Ⅻ
+        \@serifRoman@a{.75}{.20}%% 右上ヒゲ
+        \@serifRoman@a{.25}{-.38}% 左上ヒゲ
+        \@serifRoman@b{.25}{-.40}% 左下ヒゲ
+        \@serifRoman@b{.75}{.20}%% 右下ヒゲ
+    \fi
+    \end{tikzpicture}%
+    \hfill}%
+  \box1\relax
+  \endgroup
+  \kern-1zw\relax\zenkakuSpace %%% ゴースト処理（出口側）
+}
+\def\@serifRoman@a#1#2{%
+  \node[rotate=90,xscale=.7,yscale=#1] at ($(A.north) + (#2\@tempdimc,\@tempdima)$) {\@roman@I};
+}
+\def\@serifRoman@b#1#2{%
+  \node[rotate=90,xscale=.7,yscale=#1] at ($(A.south) + (#2\@tempdimc,\@tempdimb)$) {\@roman@I};
+}
+\makeatother
+%\usepackage{xcolor}
+
+%タイトル
+\title{基礎から学ぶ量子計算 アルゴリズムと計算量理論}
+\subtitle{6.2 NPの量子版：QMA（後半：pp.194-pp.199）}
+\author{\textbf{松本侑真}}
+\date{2023/12/5}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{QMA問題の例}
+  NP完全問題に対応するQMA完全問題\footnote{任意のQMA問題が多項式時間帰着可能であるようなQMA問題}
+  としては、局所ハミルトニアンに関する次の問題\footnote{NP問題$k$-SATの量子版と考えられる}が代表的である：
+  \begin{exampleblock}{問題6.3 (\textit{k}-LH (\textit{k}-local Hamiltonian))}
+    \begin{itemize}
+      \item \textbf{入力}：$n$量子ビット上の$k$局所ハミルトニアン
+            \begin{equation}
+              H=\sum_{j=1}^{r} H_j\qq{（ただし、$0\leq H_j \leq 1$）}
+            \end{equation}
+            および、$\beta-\alpha \geq 1/{\text{poly}(n)}$
+            を満たす実数$\alpha,\,\beta$
+      \item \textbf{出力}：$H$の最小固有値が$\alpha$以下ならばYES、$\beta$以上ならばNO
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{問6.9}
+  \textbf{問題}：問題6.3の出力は、「ある$\ket{\psi}$が存在して、$\ev{H}{\psi}\leq \alpha$ならばYES、どんな$\ket{\psi}$についても
+  $\ev{H}{\psi}\geq \beta$ならばNO」(★)と書き換えられることを示せ。
+  \begin{block}{問6.9の解答}
+    $H$の最小固有値と固有ベクトルの組を$(E_0,\ket{\psi_0})$とする。任意の$\ket{\psi}$について、変分原理より
+    \begin{equation}
+      \ev{H}{\psi} \geq \ev{H}{\psi_0} = E_0
+    \end{equation}
+    が成立する。$E_0\leq \alpha$ならば$\ket{\psi_0}$に対してYESを返せば良い。
+    また、$\forall\ket{\psi}\!\qty[\ev{H}{\psi}\geq \beta] \Leftrightarrow E_0\geq \beta$であるため、
+    (★)と書き換えられることが示された。
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{例6.1}
+  \begin{exampleblock}{2-LHと2-SATの対応}
+    2-SAT式
+    \begin{equation*}
+      F(x_1,\,x_2,\,x_3) = (\lnot x_1\lor x_2)\land(x_1\lor x_3)\land(\lnot x_2\lor \lnot x_3)\land(\lnot x_1\lor \lnot x_3)
+    \end{equation*}
+    は、次のハミルトニアンの集合に対応させれば自然に2-LHの入力となる：
+    \begin{equation}
+      \left\{ \,
+      \begin{aligned}
+         & H_1 = \ketbra{10}{10}_{12} \coloneqq \ketbra{10}\otimes I \qq{（テキストに誤植あり）}  \\
+         & H_2 = \ketbra{00}{00}_{13} \coloneqq \ketbra{0} \otimes I\otimes \ketbra{0} \\
+         & H_3 = \ketbra{11}{11}_{23} \coloneqq I \otimes\ketbra{11}                   \\
+         & H_4 = \ketbra{11}{11}_{13} \coloneqq \ketbra{1}\otimes I \otimes \ketbra{1}
+      \end{aligned}
+      \right.
+    \end{equation}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{2-LHと2-SATの対応の意味}
+  局所ハミルトニアン$H$は$H=\sum_{i=1}^4 H_i$である。
+  \begin{itemize}
+    \item 例えば$x_1=1,\,x_2=0$の場合、$\lnot x_1 \lor x_2=0$となるため$F(1,0,x_3)=0$である。
+    \item これに対応して、$\ket{\psi}=\ket{1}\otimes\ket{0}\otimes\ket{b}$では$\ev{H}{\psi}>0$となる。
+  \end{itemize}
+  \vfill
+  $F(x_1,\,x_2,\,x_3) = f_1\land f_2\land f_3\land f_4$と見たときに、
+  $f_i=1$に対応する状態$\ket{\psi_i}$に対して、$\ev{H_i}{\psi_i}=0$になるように$H_i$を設計する。\\
+  例えば$\alpha=0,\,\beta=1$とすると、この2-SATは2-LHに対応する。
+  \footnote{一般にこのような$H_i$が存在しなくても、$F=0$になる状態に対してハミルトニアンの期待値を大きくし、
+    $\alpha,\,\beta$を適切に設定すれば$k$-LHに対応させられると思う。}
+\end{frame}
+
+\begin{frame}{\textit{k}-LHがQMAに属することの保障}
+  \begin{exampleblock}{\textit{k}-LHに対するQMAプロトコル}
+    レジスタR上に証拠の候補が$\ket{\psi}_{\text{R}}$と与えられたとする。
+    \begin{enumerate}
+      \item レジスタAに一様重ね合わせ状態
+            \begin{equation*}
+              \frac{1}{\sqrt{r}}\sum_{j=1}^r \ket{j}_{\text{A}}
+            \end{equation*}
+            を準備する。
+      \item レジスタAの値が$j$のとき、レジスタR上でPOVM$\{H_j,\,I-H_j\}$を実行する。
+            そして、POVMの要素$H_j$に対応する測定値を得たときにreject、$I-H_j$に対応する測定値を得たときにaccept。
+    \end{enumerate}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{\textit{k}-LHがQMAに属することの保障}
+  検証者がrejectを出力する確率は
+  \begin{equation*}
+    \Pr\qty[\text{reject}](\ket{\psi}) = \frac{1}{r}\sum_{j=1}^{r}\ev{H_j}{\psi} = \frac{1}{r}\ev{H}{\psi}
+  \end{equation*}
+  となる。YESの場合は、ある状態$\ket{\varphi}$が存在して
+  \begin{equation*}
+    \Pr\qty[\text{reject}](\ket{\varphi}) = \frac{1}{r}\ev{H}{\varphi} \leq \frac{\alpha}{r} \quad\qty(\Pr\qty[\text{accept}](\ket{\varphi})\geq 1-\frac{\alpha}{r})
+  \end{equation*}
+  となる。NOの場合は、全ての状態$\ket{\psi}$に対して
+  \begin{equation*}
+    \Pr\qty[\text{reject}](\ket{\psi}) = \frac{1}{r}\ev{H}{\psi} \geq \frac{\beta}{r} \quad\qty(\Pr\qty[\text{accept}](\ket{\psi})\leq 1-\frac{\beta}{r})
+  \end{equation*}
+  となる。
+
+
+\end{frame}
+
+
+
+
+\end{document}
