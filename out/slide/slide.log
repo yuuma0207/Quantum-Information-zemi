@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  12 OCT 2023 14:19
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  12 OCT 2023 14:24
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1263,23 +1263,10 @@ File: SMP.png Graphic file (type bmp)
 <SMP.png>
 [4
 
-]
-LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 9.6222pt on input line 245.
-LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 9.6222pt on input line 245.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 9.40002pt on input line 245.
-LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
-(Font)              scaled to size 6.73553pt on input line 245.
-LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
-(Font)              scaled to size 6.73553pt on input line 245.
-LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
-(Font)              scaled to size 6.58002pt on input line 245.
-[5
+] [5
 
 ]
-Overfull \vbox (0.83173pt too high) detected at line 264
+Overfull \vbox (0.83173pt too high) detected at line 261
  []
 
 [6
@@ -1304,12 +1291,12 @@ Package rerunfilecheck Info: File `slide.out' has not changed.
 (rerunfilecheck)             Checksum: 05B9FF7757FE6A446D8F294B02146D28;54.
  ) 
 Here is how much of TeX's memory you used:
- 33834 strings out of 475422
- 664137 string characters out of 5788032
+ 33807 strings out of 475422
+ 663724 string characters out of 5788032
  953096 words of memory out of 5000000
- 54837 multiletter control sequences out of 15000+600000
- 581394 words of font info for 129 fonts, out of 8000000 for 9000
+ 54818 multiletter control sequences out of 15000+600000
+ 566963 words of font info for 114 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 128i,16n,122p,460b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,11n,122p,460b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/slide/slide.dvi (7 pages, 34248 bytes).
+Output written on out/slide/slide.dvi (7 pages, 34032 bytes).
