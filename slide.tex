@@ -1,5 +1,5 @@
 \RequirePackage{plautopatch}
-\documentclass[14pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
+\documentclass[11pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
 \usepackage{bxdpx-beamer} % dvipdfmxなので必要
 \usepackage{appendixnumberbeamer}
 
@@ -224,14 +224,11 @@
 
 \begin{frame}{定義5.1（同時メッセージパッシングモデル）}
   \begin{center}
-  \adjincludegraphics[height=0.3\linewidth]{SMP.png}
+    \adjincludegraphics[height=0.2\linewidth]{SMP.png}
   \end{center}
   \begin{block}{目的}
     レフェリーRが$f(x,y)$を出力する。ここで、関数$f$はA、B、Rすべてにとって既知とする。
   \end{block}
-\end{frame}
-
-\begin{frame}{定義5.1（同時メッセージパッシングモデル）}
   \begin{block}{計算量}
     \begin{itemize}
       \item AおよびBがRに送るメッセージ長の和（ビット数の和）のみ考慮する。
@@ -246,9 +243,9 @@
   $EQ_{n} \colon \{0,1\}^{n}\times\{0,1\}^{n}\rightarrow\{0,1\}$
   であり、
   \begin{equation}
-    EQ_{n}(x,y) = 
+    EQ_{n}(x,y) =
     \begin{cases}
-      1 & (x=y) \\
+      1 & (x=y)     \\
       0 & (x\neq y)
     \end{cases}
   \end{equation}
