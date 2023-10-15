@@ -1,5 +1,5 @@
 \RequirePackage{plautopatch}
-\documentclass[14pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
+\documentclass[11pt,aspectratio=169,xcolor=dvipsnames,table,dvipdfmx]{beamer}
 \usepackage{bxdpx-beamer} % dvipdfmxなので必要
 \usepackage{appendixnumberbeamer}
 
@@ -207,7 +207,7 @@
     \begin{itemize}
       \item \textbf{入力}：$n$量子ビット上の$k$局所ハミルトニアン
             \begin{equation}
-              H=\sum_{j=1}^{r} H_j\qq{（ただし、$0\leq H_j \leq 1$）}
+              H=\sum_{j=1}^{r} H_j\qq{（ただし、$0\leq H_j \leq 1,\,r = \text{Poly}(n)$）}
             \end{equation}
             および、$\beta-\alpha \geq 1/{\text{poly}(n)}$
             を満たす実数$\alpha,\,\beta$
@@ -224,8 +224,9 @@
     \begin{equation}
       \ev{H}{\psi} \geq \ev{H}{\psi_0} = E_0
     \end{equation}
-    が成立する。$E_0\leq \alpha$ならば$\ket{\psi_0}$に対してYESを返せば良い。
+    が成立する。$E_0\leq \alpha$ならば$\ket{\psi_0}$に対してYESを返せば良い。\\
     また、$\forall\ket{\psi}\!\qty[\ev{H}{\psi}\geq \beta] \Leftrightarrow E_0\geq \beta$であるため、
+    問題6.3の出力は
     (★)と書き換えられることが示された。
   \end{block}
 
@@ -251,7 +252,7 @@
   \end{exampleblock}
 \end{frame}
 
-\begin{frame}{2-LHと2-SATの対応の意味}
+\begin{frame}{2-LHと2-SATの対応の意味（自分なりの理解）}
   局所ハミルトニアン$H$は$H=\sum_{i=1}^4 H_i$である。
   \begin{itemize}
     \item 例えば$x_1=1,\,x_2=0$の場合、$\lnot x_1 \lor x_2=0$となるため$F(1,0,x_3)=0$である。
@@ -259,10 +260,58 @@
   \end{itemize}
   \vfill
   $F(x_1,\,x_2,\,x_3) = f_1\land f_2\land f_3\land f_4$と見たときに、
-  $f_i=1$に対応する状態$\ket{\psi_i}$に対して、$\ev{H_i}{\psi_i}=0$になるように$H_i$を設計する。\\
+  $f_i=0$に対応する状態$\ket{\psi_i}$に対して、$\ev{H_i}{\psi_i}>0$になるように$H_i$を設計する。\\
   例えば$\alpha=0,\,\beta=1$とすると、この2-SATは2-LHに対応する。
   \footnote{一般にこのような$H_i$が存在しなくても、$F=0$になる状態に対してハミルトニアンの期待値を大きくし、
     $\alpha,\,\beta$を適切に設定すれば$k$-LHに対応させられると思う。}
+\end{frame}
+
+\begin{frame}{問6.10（前半）}
+  \textbf{問題}：3-SAT式
+  \begin{equation}
+    F_1(x_1,\,x_2,\,x_3,\,x_4) = (x_1\lor x_2\lor x_3)\land(x_2\lor \lnot x_3\lor x_4)\land(x_1\lor \lnot x_2\lor \lnot x_4)
+  \end{equation}
+  に対応する3-LHの入力を与えよ。
+  \begin{block}{問6.10（前半）の解答}
+    \begin{equation*}
+      \left\{ \,
+      \begin{aligned}
+        f_1 & \coloneqq (x_1\lor x_2\lor x_3) = 0             &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (0,\,0,\,0,\,b) \\
+        f_2 & \coloneqq (x_2\lor \lnot x_3\lor x_4) = 0       &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (b,\,0,\,1,\,0) \\
+        f_3 & \coloneqq (x_1\lor \lnot x_2\lor \lnot x_4) = 0 &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (0,\,1,\,b,\,1)
+      \end{aligned}
+      \right.
+    \end{equation*}
+    である。$f_i =0$に対応する量子ビットを与えたときに、Hamiltonianの期待値が正になるように設計する。つまり、
+    \begin{equation*}
+      H_1 = \ketbra{000}\otimes I,\quad H_2 = I \otimes \ketbra{010},\quad H_3 = \ketbra{01}\otimes I\otimes \ketbra{1}
+    \end{equation*}
+    とすれば良い。
+  \end{block}
+\end{frame}
+
+\begin{frame}{問6.10（後半）}
+  \textbf{問題}：2-SAT式
+  \begin{equation}
+    F_2(x_1,\,x_2,\,x_3,\,x_4) = (x_1\lor \lnot x_3)\land(x_2\lor \lnot x_4)\land(\lnot x_1\lor \lnot x_2)
+  \end{equation}
+  に対応する2-LHの入力を与えよ。
+  \begin{block}{問6.10（後半）の解答}
+    \begin{equation*}
+      \left\{ \,
+      \begin{aligned}
+        f_1 & \coloneqq (x_1\lor \lnot x_3)= 0        &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (0,\,b,\,1,\,b) \\
+        f_2 & \coloneqq (x_2\lor \lnot x_4) = 0       &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (b,\,0,\,b,\,1) \\
+        f_3 & \coloneqq (\lnot x_1\lor \lnot x_2) = 0 &  & \Leftrightarrow (x_1,\,x_2,\,x_3,\,x_4) = (1,\,1,\,b,\,b)
+      \end{aligned}
+      \right.
+    \end{equation*}
+    である。$f_i =0$に対応する量子ビットを与えたときに、Hamiltonianの期待値が正になるように設計する。つまり、
+    \begin{equation*}
+      H_1 = \ketbra{0}\otimes I\otimes \ketbra{1}\otimes I,\quad H_2 = I \otimes \ketbra{0}\otimes I\otimes \ketbra{1},\quad H_3 = \ketbra{1}\otimes \ketbra{1}\otimes I\otimes I
+    \end{equation*}
+    とすれば良い。
+  \end{block}
 \end{frame}
 
 \begin{frame}{\textit{k}-LHがQMAに属することの保障}
@@ -281,9 +330,9 @@
 \end{frame}
 
 \begin{frame}{\textit{k}-LHがQMAに属することの保障}
-  検証者がrejectを出力する確率は
+  検証者がrejectを出力する確率は、レジスタR上の状態を$\ket{\psi_R}$として
   \begin{equation*}
-    \Pr\qty[\text{reject}](\ket{\psi}) = \frac{1}{r}\sum_{j=1}^{r}\ev{H_j}{\psi} = \frac{1}{r}\ev{H}{\psi}
+    \Pr\qty[\text{reject}](\ket{\psi_R}) = \frac{1}{r}\sum_{j=1}^{r}\ev{H_j}{\psi_R} = \frac{1}{r}\ev{H}{\psi_R}
   \end{equation*}
   となる。YESの場合は、ある状態$\ket{\varphi}$が存在して
   \begin{equation*}
@@ -293,10 +342,75 @@
   \begin{equation*}
     \Pr\qty[\text{reject}](\ket{\psi}) = \frac{1}{r}\ev{H}{\psi} \geq \frac{\beta}{r} \quad\qty(\Pr\qty[\text{accept}](\ket{\psi})\leq 1-\frac{\beta}{r})
   \end{equation*}
-  となる。
-
-
+  となる。（$k$-LHの等価な言い換え（問6.9）を用いた。）
 \end{frame}
+\begin{frame}{\textit{k}-LHがQMAに属することの保障（続き）}
+  まとめると、$x\in A_{\text{yes}},\,x\in A_{\text{no}}$それぞれに対応して
+  \begin{equation}
+    \exists{\ket{\varphi}}\qty[\Pr\qty[\text{accept}](\ket{\varphi}) \geq 1- \frac{\alpha}{r} = a] ,\quad \forall \ket{\psi}\qty[\Pr\qty[\text{accept}](\ket{\psi}) \leq 1- \frac{\beta}{r} = b]
+  \end{equation}
+  となるため、$k$-LHはQMA(a,b)に属する。また、$\beta-\alpha\geq 1/\text{poly}(n)$であるため、
+  \begin{equation}
+    a-b = \frac{\beta-\alpha}{r} \geq \frac{1}{\text{poly}(n)}
+  \end{equation}
+  となる。$a,\,b = 1-1/\text{poly}(n)$であることと、
+  \begin{equation}
+    \frac{1}{\text{exp}(n)} \leq 1-\frac{1}{\text{poly}(n)} \leq 1-\frac{1}{\text{exp}(n)}
+  \end{equation}
+  が成立することより命題6.11が適用でき、$k$-LHはQMAに属することが示された。
+\end{frame}
+
+\begin{frame}{\textit{k}-LHがQMA困難であることについて}
+  $k$-LHがQMA困難である
+  \footnote{$A$がQMA困難とは、任意の$B\in \text{QMA}$に対して、$B\leq_{p} A$が成立すること}ことは、
+  Cook-Levin定理\footnote{SATはNP完全であるという定理}の証明を量子化すれば示せる。
+  \begin{block}{証明の方針}
+    \begin{enumerate}
+      \item 任意の$A=(A_{\text{yes}},\,A_{\text{no}})\in \text{QMA}$を$k$-LHに帰着させるため、$A$を検証する一様回路族$\{Q_x\}$を考える。
+      \item 量子回路$Q_x$の$t$ステップ目の状態を$\ket{\psi_t} =\prod_{u=1}^t U_{x,u}\ket{\varphi}\ket{0}^m$とする。このときの履歴状態
+            \begin{equation}
+              \frac{1}{\sqrt{T+1}}\sum_{t=0}^{T}\ket{t}_{\text{A}}\ket{\psi_t}_{\text{B}}\qq{（$T=T(\abs{x})$は$Q_x$のサイズ）}
+            \end{equation}
+            が最低エネルギー状態になるように、局所ハミルトニアン$H$の各項を構成する。
+    \end{enumerate}
+  \end{block}
+\end{frame}
+
+\begin{frame}{任意のQMAを\textit{k}-LHに帰着させる}
+  \begin{itemize}
+    \item  局所ハミルトニアン$H$には
+          \begin{enumerate}
+            \item 検証者のアンシラ（補助量子ビット）が正しく$\ket{0}^m$にセットされているか
+            \item 各量子ゲートが正しく適用されているか
+            \item 終状態$\ket{\psi_t}$を測定したときにacceptを出力するか
+          \end{enumerate}
+          をチェックする項を含んでいる。
+    \item 最初の2つは正しく$Q_x$が実行できるかどうかに関わっているため、満たされていない場合のペナルティを大きくする。
+    \item  その結果、$Q_x$の毎ステップ後の状態の一様重ね合わせである履歴状態が最もペナルティを食わないようになる。
+    \item 3番目のチェックに対応する項のペナルティで、YES入力とNO入力の最低エネルギーの差が出る仕組みになる。
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{quantum MAX-CUT}
+  \small2-LHから派生する次の問題がQMA完全（QMA困難かつQMA）であることが示されている：
+  \begin{exampleblock}{問題6.4 (quantum MAX-CUT)}
+    \begin{itemize}
+      \item \textbf{入力}：グラフ$G=(V,E)$および各辺$\{u,\,v\}\in E$に対する重み$w_{uv}>0$
+      \item \textbf{出力}：
+            \begin{equation}
+              H_{G}\coloneqq \sum_{\{u,\,v\}\in E} w_{uv}\frac{I-X_uX_v - Y_uY_v - Z_uZ_v}{4}
+            \end{equation}
+            の最大固有値
+    \end{itemize}
+  \end{exampleblock}
+  \small{NP完全問題であるMAX-CUTは\footnote{3回目講義「量子アルゴリズムの基礎」を参照}
+    \begin{equation}
+      H_G = \sum_{\{u,\,v\}\in E} w_{uv}\frac{I-Z_uZ_v}{2}
+    \end{equation}
+    の最大固有値を見つける問題と表現できるため、これの自然な量子版と見れる。}
+\end{frame}
+
+\frame{\centering{\Huge{Thank you for your attention!}}}
 
 
 
