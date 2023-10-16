@@ -220,14 +220,17 @@
   \textbf{問題}：問題6.3の出力は、「ある$\ket{\psi}$が存在して、$\ev{H}{\psi}\leq \alpha$ならばYES、どんな$\ket{\psi}$についても
   $\ev{H}{\psi}\geq \beta$ならばNO」(★)と書き換えられることを示せ。
   \begin{block}{問6.9の解答}
-    $H$の最小固有値と固有ベクトルの組を$(E_0,\ket{\psi_0})$とする。任意の$\ket{\psi}$について、変分原理より
+    $H$の$i$番目の固有値と固有ベクトルの組を$(E_i,\ket{\psi_i})$として、$\{\ket{\psi_i}\}$は完全系を成すとする。
+    最小固有値を$E_0$とすると、任意の$\ket{\psi}$に対して
     \begin{equation}
       \ev{H}{\psi} \geq \ev{H}{\psi_0} = E_0
     \end{equation}
-    が成立する。$E_0\leq \alpha$ならば$\ket{\psi_0}$に対してYESを返せば良い。\\
-    また、$\forall\ket{\psi}\!\qty[\ev{H}{\psi}\geq \beta] \Leftrightarrow E_0\geq \beta$であるため、
-    問題6.3の出力は
-    (★)と書き換えられることが示された。
+    が成立する。
+    \begin{itemize}
+      \item このとき、$E_0\leq \alpha$ならば$\ket{\psi_0}$に対してYESを返せば良い。
+      \item また、$\forall\ket{\psi}\!\qty[\ev{H}{\psi}\geq \beta] \Leftrightarrow E_0\geq \beta$が成立する。
+    \end{itemize}
+    以上より、問題6.3の出力は(★)と書き換えられることが示された。
   \end{block}
 
 \end{frame}
