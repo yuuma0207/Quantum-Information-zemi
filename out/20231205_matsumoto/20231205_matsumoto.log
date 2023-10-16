@@ -1,10 +1,10 @@
-This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.5.31)  15 OCT 2023 20:12
+This is e-upTeX, Version 3.141592653-p4.1.0-u1.29-230214-2.6 (utf8.uptex) (TeX Live 2023) (preloaded format=uplatex 2023.5.31)  16 OCT 2023 11:01
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**slide.tex
-(./slide.tex
+**20231205_matsumoto.tex
+(./20231205_matsumoto.tex
 pLaTeX2e <2023-02-14u04>+1 (based on LaTeX2e <2022-11-01> patch level 1)
 L3 programming layer <2023-05-22> (/usr/local/texlive/2023/texmf-dist/tex/latex
 /plautopatch/plautopatch.sty
@@ -1055,8 +1055,8 @@ File: t1qhv.fd 2009/09/25 v1.2 font definition file for T1/qhv
 )
 LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
 (Font)              scaled to size 10.29301pt on input line 200.
-(out/slide/slide.aux)
-\openout1 = `slide.aux'.
+(out/20231205_matsumoto/20231205_matsumoto.aux)
+\openout1 = `20231205_matsumoto.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 200.
 LaTeX Font Info:    ... okay on input line 200.
@@ -1114,9 +1114,10 @@ LaTeX Font Info:    ... okay on input line 200.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 200.
-(out/slide/slide.out) (out/slide/slide.out)
+(out/20231205_matsumoto/20231205_matsumoto.out) (out/20231205_matsumoto/2023120
+5_matsumoto.out)
 \@outlinefile=\write5
-\openout5 = `slide.out'.
+\openout5 = `20231205_matsumoto.out'.
 
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/translator/translator-basic-dicti
@@ -1149,7 +1150,7 @@ Dictionary: translator-theorem-dictionary, Language: English
 Package chemgreek Info: Activating mapping `default' on line 200.
 
 TextBlockOrigin set to 0pt x 0pt
-(out/slide/slide.nav)
+(out/20231205_matsumoto/20231205_matsumoto.nav)
 LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
 (Font)              scaled to size 5.77332pt on input line 200.
 LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
@@ -1216,77 +1217,154 @@ LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
 (Font)              scaled to size 3.76001pt on input line 201.
 [1
 
-]
+] (I search kanjifont definition file: . . ) (I search font definition file: . 
+. . . . . . . . )
+LaTeX Font Info:    Trying to load font information for T1+ntxsups on input lin
+e 217.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/newtx/t1ntxsups.fd
+File: t1ntxsups.fd 2015/01/17 v1.0
+)
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.95pt on input line 217.
+LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
+(Font)              scaled to size 8.65997pt on input line 217.
+LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
+(Font)              scaled to size 8.65997pt on input line 217.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 8.46002pt on input line 217.
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 9.0pt on input line 217.
 LaTeX Font Info:    Trying to load font information for OT1+mlmr on input line 
-212.
+217.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/mlmodern/ot1mlmr.fd
 File: ot1mlmr.fd 2021/01/11 v1.0 Font defs for mlmodern
 )
 LaTeX Font Info:    Trying to load font information for OML+mlmm on input line 
-212.
+217.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/mlmodern/omlmlmm.fd
 File: omlmlmm.fd 2021/01/11 v1.0 Font defs for mlmodern
 )
 LaTeX Font Info:    Trying to load font information for OMS+mlmsy on input line
- 212.
+ 217.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/mlmodern/omsmlmsy.fd
 File: omsmlmsy.fd 2021/01/11 v1.0 Font defs for mlmodern
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 212
+LaTeX Font Info:    Trying to load font information for U+msa on input line 217
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 212
+LaTeX Font Info:    Trying to load font information for U+msb on input line 217
 .
 (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 217.
+LaTeX Font Info:    Font shape `T1/qhv/bx/it' in size <10.95> not available
+(Font)              Font shape `T1/qhv/b/it' tried instead on input line 217.
+LaTeX Font Info:    Font shape `T1/qhv/b/it' will be
+(Font)              scaled to size 10.29301pt on input line 217.
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 217.
 LaTeX Font Info:    Font shape `JT2/hgt/bx/n' will be
-(Font)              scaled to size 13.85594pt on input line 212.
+(Font)              scaled to size 13.85594pt on input line 217.
 LaTeX Font Info:    Font shape `JY2/hgt/bx/n' will be
-(Font)              scaled to size 13.85594pt on input line 212.
+(Font)              scaled to size 13.85594pt on input line 217.
 LaTeX Font Info:    Font shape `T1/qhv/bx/n' in size <14.4> not available
-(Font)              Font shape `T1/qhv/b/n' tried instead on input line 212.
+(Font)              Font shape `T1/qhv/b/n' tried instead on input line 217.
 LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
-(Font)              scaled to size 13.53603pt on input line 212.
+(Font)              scaled to size 13.53603pt on input line 217.
 [2
 
 ] [3
 
-]
-File: SMP.png Graphic file (type bmp)
-<SMP.png>
-[4
+] [4
 
 ] [5
 
 ] [6
+
+] [7
+
+]
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 330.
+LaTeX Font Info:    Font shape `JT2/hgt/bx/n' will be
+(Font)              scaled to size 7.69775pt on input line 330.
+LaTeX Font Info:    Font shape `JY2/hgt/bx/n' will be
+(Font)              scaled to size 7.69775pt on input line 330.
+LaTeX Font Info:    Font shape `T1/qhv/bx/n' in size <8> not available
+(Font)              Font shape `T1/qhv/b/n' tried instead on input line 330.
+LaTeX Font Info:    Font shape `T1/qhv/b/n' will be
+(Font)              scaled to size 7.52002pt on input line 330.
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 330.
+LaTeX Font Info:    Font shape `T1/qhv/bx/it' in size <14.4> not available
+(Font)              Font shape `T1/qhv/b/it' tried instead on input line 330.
+LaTeX Font Info:    Font shape `T1/qhv/b/it' will be
+(Font)              scaled to size 13.53603pt on input line 330.
+[8
+
+]
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 346.
+[9
+
+]
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 361.
+[10
+
+]
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 377.
+[11
+
+]
+LaTeX Font Info:    Kanji font shape `JY2/hgt/bx/it' undefined
+(Font)              No change on input line 392.
+[12
+
+]
+LaTeX Font Info:    Font shape `T1/ntxsups/m/n' will be
+(Font)              scaled to size 10.0pt on input line 411.
+[13
+
+]
+LaTeX Font Info:    Font shape `JT2/hgt/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 413.
+LaTeX Font Info:    Font shape `JY2/hgt/m/n' will be
+(Font)              scaled to size 23.94002pt on input line 413.
+LaTeX Font Info:    Font shape `T1/qhv/m/n' will be
+(Font)              scaled to size 23.38725pt on input line 413.
+[14
 
 ]
 ***** List of packages loaded by `plautopatch': *****
  pxpgfrcs, plarray, pxpgfmark, pxjahyper, pxtextpos.
 *****************************************************
 \tf@nav=\write6
-\openout6 = `slide.nav'.
+\openout6 = `20231205_matsumoto.nav'.
 
 \tf@toc=\write7
-\openout7 = `slide.toc'.
+\openout7 = `20231205_matsumoto.toc'.
 
 \tf@snm=\write8
-\openout8 = `slide.snm'.
+\openout8 = `20231205_matsumoto.snm'.
 
-(out/slide/slide.aux)
-Package rerunfilecheck Info: File `slide.out' has not changed.
+(out/20231205_matsumoto/20231205_matsumoto.aux)
+Package rerunfilecheck Info: File `20231205_matsumoto.out' has not changed.
 (rerunfilecheck)             Checksum: 05B9FF7757FE6A446D8F294B02146D28;54.
  ) 
 Here is how much of TeX's memory you used:
- 33998 strings out of 476693
- 669049 string characters out of 5805251
- 1855621 words of memory out of 5000000
- 53738 multiletter control sequences out of 15000+600000
- 609972 words of font info for 118 fonts, out of 8000000 for 9000
+ 34190 strings out of 476693
+ 672917 string characters out of 5805251
+ 1861621 words of memory out of 5000000
+ 53903 multiletter control sequences out of 15000+600000
+ 663567 words of font info for 171 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 128i,11n,122p,442b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 128i,15n,122p,455b,1019s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on out/slide/slide.dvi (6 pages, 31852 bytes).
+Output written on out/20231205_matsumoto/20231205_matsumoto.dvi (14 pages, 7800
+0 bytes).
