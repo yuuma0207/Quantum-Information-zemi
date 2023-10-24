@@ -216,6 +216,65 @@
   \end{exampleblock}
 \end{frame}
 
+\begin{frame}
+  \frametitle{補足：\textit{k}-LH問題はなぜ重要なのか？}
+  結論からいうと、$k$-LH問題がQMA完全であることが、量子化学計算において量子加速
+  \footnote{問題設定は現実的なものでなくても良いから、とりあえず最速の古典アルゴリズムよりも
+  量子計算で高速に解けることを示すことが量子超越である。応用上意味のある問題での量子超越を量子加速という。}
+  を得ることの難しさの本質だから。
+  \begin{center}
+    \adjincludegraphics[height=0.4\linewidth]{kLH_QMA.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{量子化学の目的の1つ：基底状態のエネルギーの計算}
+  物理的なハミルトニアンは、局所ハミルトニアンの和で表される。
+  遠隔相互作用を平均場とみなす近似や、多体相互作用を無視するため、
+  ハミルトニアンの各項は定数個の電子（量子ビット）にしか作用しないためである。
+  \begin{itemize}
+    \item 局所磁場付きのFermi-Hubbard模型（強相関系の物理）
+    \begin{equation}
+      H_{\text{Hubb}}=-t\sum_{\langle i,j\rangle,\,s}a^{\dagger}_{i,s}a_{j,s} + U\sum_{i}n_{i,\uparrow}n_{i,\downarrow} 
+        - \sum_{i}\bar{\sigma}_i\cdot\bm{B}_i
+    \end{equation}
+    \item 2次元イジング模型＋横磁場（磁石のモデルとして基本的なもの）
+    \begin{equation}
+      H_{ZZXX} = \sum_{i}d_i\sigma^{x}_i + \sum_{i}h_i\sigma^{z}_i + \sum_{i,j}J_{i,j}\sigma^{z}_i\sigma^{z}_j + \sum_{i,j}K_{i,j}\sigma^{x}_i\sigma^{x}_j
+    \end{equation}
+  \end{itemize}
+これらの基底状態におけるエネルギーが知りたい。
+\begin{block}{決定問題とエネルギーの計算の関係}
+  元々解きたかった問題：「与えられたハミルトニアンの基底所帯のエネルギーは{\color{red}\textbf{いくつ？}}」\\
+  $k$-LH問題：「エネルギーは{\color{blue}\textbf{大きい or 小さい？}}」→~{\color{red}\textbf{二分探索でエネルギーを求められる。}}
+\end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{化学計算において量子加速は得られないのか？}
+$k$-LHはQMA完全であるため、一般には量子コンピュータでも効率的に（基底）エネルギーの決定問題は解けそうにない。
+
+\begin{itemize}
+  \item 2ローカルなハミルトニアンの方が物理的に自然である。物理的に自然なハミルトニアンに対応する$2$-LHを使えばいいのでは？
+  \begin{itemize}
+    \item 残念ながら、2体相互作用までのBoson/Fermion系や、並進/回転不変性があるハミルトニアンなど、自然な$2$-LHもQMA完全だとわかっている。
+  \end{itemize}
+  \item 密度汎関数法（DFT）中の（密度の汎関数としての）平均場の近似計算もBQP困難である。
+\end{itemize}
+  
+\begin{exampleblock}{進展：基底状態の近似が与えられる場合の量子位相推定}
+  ガイド付き$k$-LH問題（基底状態の近似が入力として与えられている$k$-LH問題）であれば、
+  量子位相推定アルゴリズム（Long Termアルゴリズムの一つ）を用いて、基底エネルギー$E_{0,\,\text{est}}$を計算できる。
+  $\abs{E_0 - E_{0,\,\text{est}}}<\epsilon$に対して、
+  古典アルゴリズムでは$\epsilon$が定数の場合なら効率よく解けるが、
+  量子では$\epsilon=1/\text{poly(n)}$の場合でも効率的に解ける。
+  つまり、精度が必要な計算において量子加速が期待される。
+\end{exampleblock}
+
+
+
+\end{frame}
+
 \begin{frame}{問6.9}
   \textbf{問題}：問題6.3の出力は、「ある$\ket{\psi}$が存在して、$\ev{H}{\psi}\leq \alpha$ならばYES、どんな$\ket{\psi}$についても
   $\ev{H}{\psi}\geq \beta$ならばNO」(★)と書き換えられることを示せ。
