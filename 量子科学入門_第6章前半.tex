@@ -1,0 +1,174 @@
+%ctrl+alt+m：open Math Preview
+\documentclass[a4paper,11pt,uplatex]{jsarticle}%titlepage
+%:/usr/local/texlive/texmf-local/tex/latex/report/report.sty
+\usepackage{myreport}
+\title{量子力学入門 第6章前半}
+\author{松本侑真}
+\date{\today}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\setcounter{section}{5}
+\section{量子エンタングルメント}
+\subsection{はじめに}
+1935年、Einstein, Podolsky, Rosenは量子力学の記述が不完全である証拠として、ある思考実験を提出した。
+この思考実験はEPRパラドックスと呼ばれ、やがてその本質は量子力学における量子エンタングルメント（量子もつれ）という
+非局所的な性質にあることが理解されるようになった。量子力学的にエンタングルした2つの系を考えると、それらはどれだけ遠く離れていたとしても、
+もはや独立には振舞わない（局所性の仮定が成立しない）のである。
+量子エンタングルメントは元から量子力学の根幹にかかわる基礎科学的な問題として議論されていたが、1982年に量子エンタングルメントは量子力学的な系が持つ
+特徴であることが実験的に確認されるとパラダイムシフトが起こった。
+量子エンタングルメントを単に基礎科学的な問題としてだけではなく、それをいかにして利用するかといった研究が行われ始めた。
+
+1980年代に入り、量子アルゴリズムや量子暗号プロトコルなどが相次いで提案されると、量子エンタングルメントは量子情報処理で利用可能な重要な資源の1つであると認識されるようになった。
+1990年代に入ると、量子エンタングルメントの研究がきわめて活発に行われるようになる。量子情報処理が対象とする系が持っている量子エンタングルメントという性質を明らかにすることが、
+量子情報処理技術の発展のために必要不可欠だからである。それと同時に、量子エンタングルメントの新しい性質を発見することが新しい量子情報処理技術の発見に繋がるとの期待もあった。
+こうして、量子エンタングルメント理論は量子情報理論とともに急速に進展した。
+
+特に、\textbf{局所操作と古典通信}（local operations and classical communication: \textbf{LOCC}）の考え方を導入することにより、
+量子エンタングルメントの定量化が可能となり、量子エンタングルメントに関する理解は大きく進展した。
+AとBの2者を考え、その間で量子ビットのやり取り（量子通信）はできないものの、通常の情報のやり取り（古典通信）はできるものとする。
+これがLOCCである。LOCCはエンタングルした状態を生成できないという性質を持っている。
+したがって、もしLOCCだけでは不可能だった情報処理がLOCCとエンタングル状態を組み合わせることで可能になったとすれば、それはエンタングル状態が持つ威力の発現だということができる。
+LOCCのように制限された操作を考えることで、量子エンタングルメントの持つ威力が浮き彫りになるのである。またLOCCは、それそのものが量子情報プロトコルとしての有用性を持つ。
+実際、量子テレポーテーションをはじめ、量子エンタングルメントを利用した量子情報処理プロトコルの多くがLOCCである。
+
+3者以上の多者からなる量子系では、さまざまな種類の量子エンタングルメントが存在し、多彩な現象を見せるようになる。
+また、現実の系では、量子状態はデコヒーレンスの影響により混合状態になってしまうので、混合状態における量子エンタングルメントの性質を理解しておくことは、
+現実の量子情報処理技術にとって重要なことである。
+
+\subsection{エンタングルメントの基礎}
+\subsubsection{量子相関と古典相関}
+AとBの2つの量子ビットを考える。どちらの量子ビットも$\ket{0}$である状態は$\ket{0}_{\text{A}}\ket{0}_{\text{B}}$、
+どちらも$\ket{1}$である状態は$\ket{1}_{\text{A}}\ket{1}_{\text{B}}$である。この2つの状態を重ね合わせた状態
+\begin{equation}
+  \ket{\Psi} = \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} + \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}}
+\end{equation}
+はエンタングルした状態（もつれた状態）と呼ばれる。
+
+いま、AとBそれぞれの量子ビットに対し、$\ket{0}$なのか$\ket{1}$なのかを決める測定を行ったとする。もしAの測定結果が$\ket{0}$だとすると、$\ket{\Psi}$は$\ket{0}_{\text{A}}\ket{0}_{\text{B}}$に収縮するので、
+Bの測定結果も必ず$\ket{0}$になる。同様に、Aの測定結果が$\ket{1}$だとすると、Bの測定結果も必ず$\ket{1}$になる。
+AとBの距離が例えどれだけ離れていようとも、AとBの測定結果は常に同じになる。
+しかし、これ自体はあまり驚くべき現象ではない。例えば、いまAとBの2つの箱があり、2つの箱にはそれぞれ同じ数字を書いた紙が初めから入っているとする。
+ただし、0と1のどちらの数字が書いてあるかは知らないとする。このとき、Aの箱を開けて0と書いた紙を見つければ、Bの箱を開けたときも0と書いてある紙を見つけるはずである。
+このようなありふれた場合でも、距離に関係なくAとBの測定結果は常に同じになる。
+
+ところが、箱の中の紙とは異なり、エンタングルした状態$\ket{\Psi}$は遥かに強い相関を示すのである。$\ket{0}$と$\ket{1}$を$\theta$だけ回転させた直交基底を
+\begin{equation}
+  \begin{cases}
+    \ket{\theta}         & = \;\;\;\cos\theta\ket{0} + \sin\theta\ket{1} \\
+    \ket{\theta_{\perp}} & = -\sin\theta\ket{0} + \cos\theta\ket{1}
+  \end{cases}
+\end{equation}
+とすると$\ket{\Psi}$は
+\begin{equation}
+  \ket{\Psi} = \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} + \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}} 
+             = \frac{\ket{\theta}_{\text{A}}\ket{\theta}_{\text{B}} + \ket{\theta_{\perp}}_{\text{A}}\ket{\theta_{\perp}}_{\text{B}}}{\sqrt{2}}
+\end{equation}
+と書き換えることができる。したがって、AとBそれぞれに、$\ket{\theta}$なのか$\ket{\theta_{\perp}}$なのかを決める測定を行った場合でも、
+両者の測定結果は常に一致するのである。このように、エンタングルした状態に対する測定結果は、基底の取り方に関係なく一致するという強い相関を示し、
+これは\textbf{量子相関}（quantum correlation）と呼ばれる。これに対し、箱の中の紙の例は\textbf{古典相関}（classical correlation）と呼ばれる。
+前者のエンタングルした状態$\ket{\Psi}$の密度行列表示は
+\begin{equation}
+  \ketbra{\Psi} = \frac{1}{2}\qty(\ketbra{00} + \ketbra{00}{11} + \ketbra{00}{11} + \ketbra{11})
+\end{equation}
+であるが、後者の古典相関を持つ系の密度行列表示は
+\begin{equation}
+  \sigma = \frac{1}{2}\qty(\ketbra{00} + \ketbra{11})
+\end{equation}
+の混合状態であり、$\ket{\Psi}$の状態とは明確に区別される。
+
+\subsubsection{積状態と最大エンタングル状態}
+
+もっと一般の、AとBの2つの$d$準位系における純粋状態$\ket{\psi}$を考える。
+Schmidt分解より、$\ket{\psi}$はAとBの適当な局所ユニタリ変換（$U\otimes V$）を使って
+\begin{equation}
+  (U\otimes V)\ket{\psi} = \sum_{i=0}^{d-1}\sqrt{p_i}\ket{i}_{\text{A}}\ket{i}_{\text{B}}
+\end{equation}
+と書くことができる。Schmidt係数は大きい順に並んでいるとする：
+\begin{equation}
+  p_0 \geq p_1 \geq \cdots \geq p_{d-1}\;。 
+\end{equation}
+
+\newpage
+
+\subsection{Appendix}
+\subsubsection{Schmidtの分解定理}
+\vskip\baselineskip
+\begin{tcolorbox}[
+colback = white,
+colframe = green!35!black,
+fonttitle = \bfseries]
+\begin{theorem}[Schmidtの分解定理]
+  任意の合成状態$\ket{\psi}\in\mathcal{H}_1\otimes\mathcal{H}_2$に対して、
+  $p_i>0\;(i=1,\ldots,\,l\leq\min[d_1,\,d_2])$と$\mathcal{H}_1,\,\mathcal{H}_2$の正規直交系$\qty{\ket{\zeta_i}}_{i=1}^{l}$と$\qty{\ket{\xi_j}}_{j=1}^{l}$が存在して
+  \begin{equation}
+    \ket{\psi} = \sum_{i=1}^{l}\sqrt{p_i}\ket{\zeta_i}\ket{\xi_i}
+  \end{equation}
+  と書くことができる。これをSchmidt分解（Schmidt decomposition）という。$p_i$をSchmidt係数（Schmidt coefficient）、$l$をSchmidt階数（Schmidt rank）と呼び、
+  \begin{equation}
+    \sum_{i=1}^{l}p_i = 1
+  \end{equation}
+  を満たす。
+\end{theorem}
+\end{tcolorbox}
+\vskip\baselineskip
+
+
+\begin{proof}
+  一般性を失わず$d\coloneqq d_1 \leq d_2$とする。$\qty{\ket{\phi_i}}_{i=1}^{d}$と$\qty{\ket{\xi_j}}_{j=1}^{d_2}$をそれぞれ
+  $\mathcal{H}_1$と$\mathcal{H}_2$の正規直交基底とすると、任意の状態$\ket{\psi}\in\mathcal{H}_1\otimes\mathcal{H}_2$は、
+  \begin{equation}
+    \ket{\psi} = \sum_{i=1}^{d}\sum_{j=1}^{d_2}\alpha_{ij}\ket{\phi_i}\otimes\ket{\xi_j} 
+    = \sum_{i=1}^{d}\ket{\phi_i}\otimes\qty(\sum_{j=1}^{d_2}\alpha_{ij}\ket{\xi_j}) = \sum_{i=1}^{d}\ket{\phi_i}\otimes\ket{\chi_i}
+  \end{equation}
+  とかける。ただし、$\ket{\chi_i}\coloneqq \sum_{j=1}^{d_2}\alpha_{ij}\ket{\xi_j}$とした。
+  ここで、$(i,j)$成分が$X_{ij}\coloneqq\braket{\chi_i}{\chi_j}$で与えられる$d\cross d$複素行列$X$を考える。
+  定義より$X$は正値行列なので、$X$の固有値はすべて非負である。$X$の固有値を大きい順に$p_1,\,\ldots,\,p_d\geq 0$と置き、$l\;(\leq d)$個の固有値が正であるとする。
+  また、$X$を対角化する$d\cross d$ユニタリ行列を$U$として、
+  \begin{equation}
+    \ket{\eta_j'}\coloneqq \sum_{i=1}^{d}U_{ij}\ket{\chi_i},\quad \ket{\zeta_k} \coloneqq \sum_{i=1}^{d}U^*_{ik}\ket{\phi_i}\qquad(j,k=1,\ldots,\,d)
+  \end{equation}
+  と置く。\footnote{本に誤植あり}
+  $U$のユニタリ性により、
+  \begin{equation}
+    \sum_{k=1}^d U^{*}_{ik}\ket{\eta_k'} = \sum_{k=1}^d U^{*}_{ik}\qty(\sum_{j=1}^{d}U_{jk}\ket{\chi_j}) = \sum_{j=1}^{d}\delta_{ij}\ket{\chi_j} = \ket{\chi_i}
+  \end{equation}
+  を得る。したがって、
+  \begin{equation}
+    \ket{\psi} = \sum_{i=1}^{d}\ket{\phi_i}\otimes\ket{\chi_i} = \sum_{i=1}^{d}\ket{\phi_i}\otimes\qty(\sum_{k=1}^{d}U^{*}_{ik}\ket{\eta_k'})
+               = \sum_{i=1}^{d}\sum_{k=1}^{d}U^{*}_{ik}\ket{\phi_i}\otimes\ket{\eta_k'} = \sum_{k=1}^{d}\ket{\zeta_k}\otimes\ket{\eta_k'}
+  \end{equation}
+  が成立する。
+  \footnote{本の証明では$\qty{\ket{\zeta_k}}_{k=1}^{d}$が$\mathcal{H}_1$の正規直交基底であることを用いて示している。
+  すなわち、$I=\sum_{k}\ketbra{\zeta_k}$と、$\braket{\zeta_j}{\phi_i} = U_{ij}$より
+  \begin{equation}
+    \ket{\psi} = \sum_{i=1}^{d}\ket{\phi_i}\otimes\ket{\chi_i} = \sum_{i=1}^d\qty(\sum_{j=1}^{d}\ketbra{\zeta_j})\ket{\phi_i}\otimes\qty(\sum_{k=1}^{d}U^*_{ik}\ket{\eta_k'})
+               = \sum_{j,k=1}^{d}\qty(\sum_{k=1}^d U_{ij}U^{*}_{ik})\ket{\zeta_j}\otimes\ket{\eta_k'} = \sum_{k=1}^{d}\ket{\zeta_k}\otimes\ket{\eta_k'}
+  \end{equation}
+  と示している。}
+  \\
+  ところで、$X$の対角化
+  \begin{equation}
+    \sum_{k,l}U^{*}_{ki}X_{kl}U_{lj} = p_i\delta_{ij}
+  \end{equation}
+  より、
+  \begin{equation}
+    \braket{\eta_i'}{\eta_j'} = p_i\delta_{ij}
+  \end{equation}
+  が成り立つため、
+  \begin{equation}
+    \ket{\eta_i}\coloneqq \frac{1}{\sqrt{p_i}}\ket{\eta_i'}\quad(i=1,\ldots,\,l)
+  \end{equation}
+  と置けば、$\qty{\ket{\eta_i}}_{i=1}^{l}$は$\mathcal{H}_2$の正規直交系（正規直交基底ではない）を成す。
+  $\braket{\psi}=1$を用いると、$\sum_{i=1}^{l}p_i=1$も示される。以上より、Schmidtの分解定理が示された。
+
+  
+  
+  
+\end{proof}
+
+
+
+
+\end{document}
