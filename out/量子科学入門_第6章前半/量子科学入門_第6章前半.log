@@ -1,4 +1,4 @@
-This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  19 NOV 2023 17:38
+This is e-upTeX, Version 3.141592653-p4.0.0-u1.28-220214-2.6 (utf8.uptex) (TeX Live 2022) (preloaded format=uplatex 2022.11.21)  19 NOV 2023 19:57
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1395,23 +1395,23 @@ LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
 (Font)              scaled to size 7.39746pt on input line 103.
 LaTeX Font Info:    Font shape `JT2/hmc/m/n' will be
 (Font)              scaled to size 5.5481pt on input line 103.
-[3] [4] [5]
+[3] [4] [5] [6]
 LaTeX Font Info:    Kanji font shape `JY2/hmc/m/it' undefined
-(Font)              No change on input line 226.
-[6] [7] (out/量子科学入門_第6章前半/量子科学入門_第6章前半.
+(Font)              No change on input line 273.
+[7] [8] (out/量子科学入門_第6章前半/量子科学入門_第6章前半.
 aux)
 Package rerunfilecheck Info: File `量子科学入門_第6章前半.out' has no
 t changed.
-(rerunfilecheck)             Checksum: F78EF41D7888DBA3CCF09C86C92E938A;524.
+(rerunfilecheck)             Checksum: 59020C7D41FACCAC36C4B3E9A216A351;685.
  ) 
 Here is how much of TeX's memory you used:
- 41311 strings out of 475422
- 858691 string characters out of 5788032
- 1233770 words of memory out of 5000000
- 62366 multiletter control sequences out of 15000+600000
- 523573 words of font info for 145 fonts, out of 8000000 for 9000
+ 41314 strings out of 475422
+ 858715 string characters out of 5788032
+ 1233962 words of memory out of 5000000
+ 62368 multiletter control sequences out of 15000+600000
+ 523741 words of font info for 146 fonts, out of 8000000 for 9000
  934 hyphenation exceptions out of 8191
  113i,12n,110p,1242b,1353s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on out/量子科学入門_第6章前半/量子科学入門_第6
-章前半.dvi (7 pages, 49196 bytes).
+章前半.dvi (8 pages, 57908 bytes).
