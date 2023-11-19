@@ -64,6 +64,7 @@ AとBの距離が例えどれだけ離れていようとも、AとBの測定結�
 \begin{equation}
   \ket{\Psi} = \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} + \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}} 
              = \frac{\ket{\theta}_{\text{A}}\ket{\theta}_{\text{B}} + \ket{\theta_{\perp}}_{\text{A}}\ket{\theta_{\perp}}_{\text{B}}}{\sqrt{2}}
+             \label{eq:entangled_unitary}
 \end{equation}
 と書き換えることができる。したがって、AとBそれぞれに、$\ket{\theta}$なのか$\ket{\theta_{\perp}}$なのかを決める測定を行った場合でも、
 両者の測定結果は常に一致するのである。このように、エンタングルした状態に対する測定結果は、基底の取り方に関係なく一致するという強い相関を示し、
@@ -89,9 +90,85 @@ Schmidt分解より、$\ket{\psi}$はAとBの適当な局所ユニタリ変換�
 \begin{equation}
   p_0 \geq p_1 \geq \cdots \geq p_{d-1}\;。 
 \end{equation}
+$p_0=1$のとき、$p_1=p_2=\cdots=p_{d-1}=0$であり、
+\begin{equation}
+  \ket{\psi} = \qty(U^{\dagger}\otimes V^{\dagger})\qty(\ket{0}_{\text{A}}\otimes\ket{0}_{\text{B}}) = \ket{f}_{\text{A}}\otimes\ket{g}_{\text{B}}
+\end{equation}
+になるが、このようにAの状態とBの状態の積でかける状態を\textbf{積状態}（product state）と呼ぶ。
+積状態の縮約密度演算子は純粋状態である：
+\begin{equation}
+  \sigma_{A} = \ketbra{f},\,\sigma_{B} = \ketbra{g}\;。
+\end{equation}
+一方、$p_0 < 1$のとき、$\ket{\psi}$の右辺は2項以上の和になり、Aの状態とBの状態の積として書くことができない。\footnote{必要十分かわからん}
+この状態がエンタングル状態（entangled state）である。特に、すべてのSchmidt係数が等しく$p_i=1/d$のときの状態
+\begin{equation}
+  \ket{\Psi} = \frac{1}{\sqrt{d}}\sum_{i=0}^{d-1}\ket{i}_{\text{A}}\ket{i}_{\text{B}}
+\end{equation}
+を最大エンタングル状態（maximally entangled state）と呼ぶ。最大エンタングル状態の縮約密度演算子は
+\begin{equation}
+  \sigma_A = \sigma_B = \frac{1}{d}I
+\end{equation}
+であり、規格化定数を除いて単位演算子（すなわち完全混合状態）となる。
+
+$X$をAに作用する任意の演算子とし、それを
+\begin{equation}
+  X = \sum_{k,l=0}^{d-1}\ket{k}X_{kl}\bra{l}
+\end{equation}
+で表す。このとき、最大エンタングル状態$\ket{\Psi}$に関して、
+\begin{align}
+  (X\otimes I)\ket{\Psi} &= \frac{1}{\sqrt{d}}\qty(\sum_{k,l}\ket{k}X_{kl}\bra{l}\otimes I)\sum_{i}\ket{i}_{\text{A}}\ket{i}_{\text{B}} 
+                         = \frac{1}{\sqrt{d}}\sum_{k,i} X_{ki}\ket{k}_{\text{A}}\ket{i}_{\text{B}} \\
+                         &= \frac{1}{\sqrt{d}}\qty(I\otimes\sum_{i,l} \ket{i}X_{il}\bra{l})\sum_{k}\ket{k}_{\text{A}}\ket{k}_{\text{B}}
+                         = \qty(I\otimes X^\top)\ket{\Psi} 
+\end{align}
+が成立する。
+これより、$X$を実直交行列$O$とすれば、
+\begin{equation}
+  (O\otimes O)\ket{\Psi} = \qty(O\otimes O^\top)\ket{\Psi} = \ket{\Psi}
+\end{equation}
+となり、式\eqref{eq:entangled_unitary}が確かめられる。
+\footnote{実直交ではないユニタリ行列で変換したら成り立たないの？本では、基底の取り方に関係なく一致するとあったが、あくまで実直交行列による変換のみ？}
+また、Schmidt分解の基底の取り方の任意性を考慮すると、最大エンタングル状態は任意の局所ユニタリ変換によって変換される。すなわち、
+$d$準位系のすべての最大エンタングル状態は$(U \otimes V)\ket{\Psi}$の形をしていることになるが、これは
+\begin{equation}
+  (U \otimes V)\ket{\Psi} = (U\otimes I)(I\otimes V)\ket{\Psi} = (UV^{\top}\otimes I)\ket{\Psi} = (I\otimes VU^{\top})\ket{\Psi}
+\end{equation}
+と書き換えられる。
+$UV^{\top}$や$VU^{\top}$は局所ユニタリ変換なので、すべての最大エンタングル状態は、AまたはBだけの局所ユニタリ変換で相互変換可能であることになる。
+以下の4つの状態は、いずれも2つの量子ビットにおける最大エンタングル状態である：
+\begin{equation}
+  \ket{\phi^{\pm}}_{\text{AB}} = \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} \pm \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}},\quad
+  \ket{\psi^{\pm}}_{\text{AB}} = \frac{\ket{0}_{\text{A}}\ket{1}_{\text{B}} \pm \ket{1}_{\text{A}}\ket{0}_{\text{B}}}{\sqrt{2}}\;。
+\end{equation}
+これらは\textbf{Bell基底}（Bell basis）と呼ばれ、2つの量子ビットにおけるCONS（完全規格直交系）を構成している。Bell状態は最大エンタングル状態なので、
+A側にPauli行列のユニタリ変換を施すことで、以下のように相互変換ができる：
+\begin{align}
+  \ket{\phi^{+}}_{\text{AB}} &= (I\otimes I)\ket{\phi^{+}}_{\text{AB}}\;, \\
+  \ket{\psi^{+}}_{\text{AB}} &= (\sigma_x\otimes I)\ket{\phi^{+}}_{\text{AB}}\;, \\
+  \ket{\phi^{-}}_{\text{AB}} &= (i\sigma_y\otimes I)\ket{\phi^{+}}_{\text{AB}}\;, \\
+  \ket{\psi^{-}}_{\text{AB}} &= (\sigma_z\otimes I)\ket{\phi^{+}}_{\text{AB}}\;。
+\end{align}
 
 \newpage
 
+\subsubsection{量子テレポーテーション}
+エンタングルメントを利用したプロトコルの中で、最も基本的で重要なものが\textbf{量子テレポーテーション}（quantum teleportation）である。
+量子テレポーテーションは、エンタングル状態と古典通信を用いて量子状態を遠隔地へと転送するプロトコルである。いま、送信者と受信者はエンタングル状態
+\begin{equation}
+  \ket{\phi^{+}}_{\text{AB}} = \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} + \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}}
+\end{equation}
+を保持しているとする。また、送信者が持っている量子ビットXの状態$\ket{\psi}_{\text{X}} = a\ket{0}_{\text{X}} + b\ket{1}_{\text{X}}$を
+受信者へ転送したいとする。このとき、X、A、Bの3つの量子ビット全体の状態を、4つのBell基底を使って書き換えると、
+\begin{align}
+  (a&\ket{0}_{\text{X}}+b\ket{1}_{\text{X}})\otimes  \frac{\ket{0}_{\text{A}}\ket{0}_{\text{B}} + \ket{1}_{\text{A}}\ket{1}_{\text{B}}}{\sqrt{2}} \notag\\
+  =& \frac{1}{2}\left[\ket{\phi^{+}}_{\text{XA}}\otimes(a\ket{0}_{\text{B}}+b\ket{1}_{\text{B}}) + \ket{\phi^{-}}_{\text{XA}}\otimes(a\ket{0}_{\text{B}}-b\ket{1}_{\text{B}})\right.\notag\\
+  &+\left.\ket{\psi^{+}}_{\text{XA}}\otimes(a\ket{1}_{\text{B}}+b\ket{0}_{\text{B}}) + \ket{\psi^{-}}_{\text{XA}}\otimes(a\ket{1}_{\text{B}}-b\ket{0}_{\text{B}})\right]
+\end{align}
+となる。
+
+
+
+\newpage
 \subsection{Appendix}
 \subsubsection{Schmidtの分解定理}
 \vskip\baselineskip
